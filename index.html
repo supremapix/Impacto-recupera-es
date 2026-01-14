@@ -221,6 +221,8 @@
               'float': 'float 3s ease-in-out infinite',
               'text-reveal': 'textReveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards',
               'pulse-glow': 'pulseGlow 2s infinite',
+              'infinite-scroll-up': 'infiniteScrollUp 40s linear infinite',
+              'infinite-scroll-up-delayed': 'infiniteScrollUp 45s linear infinite',
             },
             keyframes: {
               heartBeat: {
@@ -235,7 +237,11 @@
               scan: { '0%, 100%': { top: '0', opacity: '0' }, '20%': { opacity: '1' }, '50%': { top: '100%', opacity: '1' }, '80%': { opacity: '1' } },
               float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } },
               textReveal: { '0%': { transform: 'translateY(100%)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
-              pulseGlow: { '0%, 100%': { boxShadow: '0 0 0 0 rgba(90, 111, 166, 0.4)' }, '50%': { boxShadow: '0 0 20px 10px rgba(90, 111, 166, 0)' } }
+              pulseGlow: { '0%, 100%': { boxShadow: '0 0 0 0 rgba(90, 111, 166, 0.4)' }, '50%': { boxShadow: '0 0 20px 10px rgba(90, 111, 166, 0)' } },
+              infiniteScrollUp: {
+                '0%': { transform: 'translateY(0)' },
+                '100%': { transform: 'translateY(-50%)' }
+              }
             }
           }
         }
@@ -249,6 +255,11 @@
       @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
       .animate-spin-slow { animation: spin 8s linear infinite; }
       .overflow-hidden-text { overflow: hidden; }
+      
+      /* Pause on hover for infinite scroll */
+      .scroller-container:hover .scroller-content {
+        animation-play-state: paused;
+      }
     </style>
 <script type="importmap">
 {
