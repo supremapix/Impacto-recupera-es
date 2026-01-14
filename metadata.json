@@ -1,0 +1,7 @@
+{
+  "name": "Impacto Recuperações - Pronta Resposta",
+  "description": "Site profissional de pronta resposta e recuperação de veículos com atendimento nacional 24/7.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
