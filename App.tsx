@@ -20,12 +20,12 @@ const HomePage: React.FC = () => (
     <div id="home">
       <Hero />
     </div>
-    <EmergencyBanner />
     <Carousel />
     <CoverageMap />
     <AccordionSection />
     <Testimonials />
     <FeaturedVisual />
+    <EmergencyBanner />
     <section id="contato" className="py-20 bg-gray-50">
       <ContactForm />
     </section>
