@@ -7,8 +7,8 @@ import { Globe } from 'lucide-react';
 
 export const CoveragePage: React.FC = () => {
   return (
-    <div className="pt-24 bg-white">
-      <section className="py-20 bg-gray-50">
+    <div className="bg-white">
+      <section className="pt-32 pb-20 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
           <div className="flex justify-center mb-6">
             <div className="p-4 bg-primary text-white rounded-3xl animate-bounce">

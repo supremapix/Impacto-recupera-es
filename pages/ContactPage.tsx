@@ -5,8 +5,8 @@ import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
   return (
-    <div className="pt-24 bg-white">
-      <section className="py-20 bg-accent text-white">
+    <div className="bg-white">
+      <section className="pt-32 pb-20 bg-accent text-white">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-8xl font-black uppercase italic leading-none tracking-tighter mb-6">
             Suporte <span className="text-primary">Estratégico</span>

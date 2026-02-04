@@ -6,11 +6,11 @@ import { Shield, Target, Zap, Activity } from 'lucide-react';
 
 export const ServicesPage: React.FC = () => {
   return (
-    <div className="pt-24 bg-white">
-      <section className="py-20 bg-accent text-white overflow-hidden">
+    <div className="bg-white">
+      <section className="pt-32 pb-20 bg-accent text-white overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-8xl font-black uppercase italic italic leading-none tracking-tighter mb-8">
+            <h1 className="text-5xl md:text-8xl font-black uppercase italic leading-none tracking-tighter mb-8">
               Soluções em <span className="text-primary">Recuperação</span>
             </h1>
             <p className="text-xl text-gray-400 font-medium">Oferecemos a mais avançada tecnologia de pronta resposta do Brasil para veículos, frotas e ativos de alto valor.</p>

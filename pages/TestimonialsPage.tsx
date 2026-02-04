@@ -5,14 +5,14 @@ import { Star, MessageSquare } from 'lucide-react';
 
 export const TestimonialsPage: React.FC = () => {
   return (
-    <div className="pt-24 bg-white">
-      <section className="py-20 bg-primary text-white">
+    <div className="bg-white">
+      <section className="pt-32 pb-20 bg-primary text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full mb-6">
             <Star size={16} fill="white" />
             <span className="text-xs font-black uppercase tracking-widest">Excelência Comprovada</span>
           </div>
-          <h1 className="text-5xl md:text-8xl font-black uppercase italic italic leading-none tracking-tighter mb-6">
+          <h1 className="text-5xl md:text-8xl font-black uppercase italic leading-none tracking-tighter mb-6">
             Histórias de <br /> <span className="text-accent">Sucesso</span>
           </h1>
           <p className="text-xl text-white/70 max-w-2xl mx-auto">Confira os relatos de quem confiou na Impacto Recuperações para proteger seu patrimônio.</p>
