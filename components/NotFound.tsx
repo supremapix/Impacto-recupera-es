@@ -38,14 +38,14 @@ export const NotFound: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link 
               to="/" 
-              className="w-full sm:w-auto bg-primary text-white px-8 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 hover:bg-white hover:text-primary transition-all shadow-xl hover:-translate-y-1 active:scale-95"
+              className="w-full sm:w-auto bg-primary text-white px-8 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 hover:bg-white hover:text-primary transition-all duration-300 shadow-xl hover:-translate-y-1 active:scale-95"
             >
               <Home size={22} />
               VOLTAR AO INÍCIO
             </Link>
             <button 
               onClick={() => window.history.back()}
-              className="w-full sm:w-auto bg-white/5 border border-white/10 text-white px-8 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-white/10 transition-all active:scale-95"
+              className="w-full sm:w-auto bg-white/10 border border-white/20 text-white px-8 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-white/20 transition-all duration-300 active:scale-95 hover:-translate-y-1 shadow-lg"
             >
               <ArrowLeft size={22} />
               PÁGINA ANTERIOR

@@ -79,7 +79,7 @@ export const EmergencyBanner: React.FC = () => {
             <button 
               onClick={checkCoverage}
               disabled={loading}
-              className="bg-[#5a6fa6] hover:bg-white hover:text-[#5a6fa6] transition-all px-10 py-5 rounded-xl font-black text-lg flex items-center gap-3 shadow-2xl uppercase tracking-tighter min-w-[280px] justify-center"
+              className="bg-primary text-white hover:bg-white hover:text-primary transition-all duration-300 px-10 py-5 rounded-2xl font-black text-lg flex items-center gap-3 shadow-2xl uppercase tracking-tighter min-w-[280px] justify-center hover:-translate-y-1 active:scale-95"
             >
               {loading ? (
                 <div className="flex items-center gap-3">

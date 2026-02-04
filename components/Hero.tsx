@@ -105,14 +105,14 @@ export const Hero: React.FC = () => {
                 href={whatsappHeroUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-primary text-white px-6 py-4 sm:px-8 sm:py-5 md:py-6 rounded-2xl font-black text-base sm:text-lg md:text-2xl flex items-center justify-center gap-3 hover:bg-white hover:text-primary transition-all shadow-[0_20px_40px_rgba(90,111,166,0.4)] hover:-translate-y-2 animate-pulse-glow"
+                className="group bg-primary text-white px-8 py-5 md:px-10 md:py-6 rounded-2xl font-black text-base sm:text-lg md:text-xl flex items-center justify-center gap-3 hover:bg-accent hover:-translate-y-1.5 transition-all duration-300 shadow-[0_20px_40px_rgba(90,111,166,0.4)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.5)] active:scale-95 animate-pulse-glow"
               >
                 CANAL ATENDIMENTO
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" />
               </a>
               <a 
                 href="#servicos"
-                className="bg-white/5 backdrop-blur-md text-white border border-white/20 px-6 py-4 sm:px-8 sm:py-5 md:py-6 rounded-2xl font-bold text-base sm:text-lg md:text-2xl hover:bg-white/20 transition-all text-center flex items-center justify-center"
+                className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-5 md:px-10 md:py-6 rounded-2xl font-bold text-base sm:text-lg md:text-xl hover:bg-white/20 hover:-translate-y-1.5 transition-all duration-300 text-center flex items-center justify-center active:scale-95 shadow-xl"
               >
                 SERVIÇOS
               </a>

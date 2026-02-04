@@ -57,7 +57,7 @@ export const Header: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             className={`
-              px-7 py-3 rounded-xl font-black text-sm uppercase tracking-wider flex items-center gap-2 transition-all shadow-xl hover:-translate-y-1
+              px-7 py-3.5 rounded-2xl font-black text-sm uppercase tracking-wider flex items-center gap-2 transition-all duration-300 shadow-xl hover:-translate-y-1 active:scale-95
               ${isScrolled ? 'bg-primary text-white hover:bg-accent' : 'bg-white text-primary hover:bg-primary hover:text-white'}
             `}
           >
@@ -93,7 +93,7 @@ export const Header: React.FC = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-white text-center py-5 rounded-2xl font-black text-lg flex justify-center items-center gap-3 mt-4 shadow-xl active:scale-95 transition-transform"
+            className="bg-primary text-white text-center py-5 rounded-2xl font-black text-lg flex justify-center items-center gap-3 mt-4 shadow-xl active:scale-95 transition-all duration-300 hover:bg-accent"
           >
             <Phone size={24} />
             CANAL ATENDIMENTO

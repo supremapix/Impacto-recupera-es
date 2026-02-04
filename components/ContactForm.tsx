@@ -30,7 +30,7 @@ export const ContactForm: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 max-w-5xl">
-      <div className="flex flex-col lg:flex-row gap-12 bg-white rounded-3xl overflow-hidden shadow-2xl">
+      <div className="flex flex-col lg:flex-row gap-12 bg-white rounded-[2.5rem] overflow-hidden shadow-2xl">
         <div className="lg:w-1/3 bg-primary p-12 text-white flex flex-col justify-between">
           <div>
             <h2 className="text-3xl font-black mb-6 uppercase leading-tight">IMPACTO RECUPERAÇÕES</h2>
@@ -57,7 +57,7 @@ export const ContactForm: React.FC = () => {
           <p className="text-gray-500 mb-8">Preencha o formulário e nossa equipe retornará em breve.</p>
 
           {submitted ? (
-            <div className="bg-green-50 text-green-700 p-8 rounded-2xl text-center border border-green-200 animate-fadeIn">
+            <div className="bg-green-50 text-green-700 p-8 rounded-[2rem] text-center border border-green-200 animate-fadeIn">
               <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Send className="text-green-600" />
               </div>
@@ -82,7 +82,7 @@ export const ContactForm: React.FC = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="(00) 00000-0000"
-                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                   />
                 </div>
                 <div>
@@ -94,7 +94,7 @@ export const ContactForm: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="exemplo@empresa.com.br"
-                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                   />
                 </div>
               </div>
@@ -109,7 +109,7 @@ export const ContactForm: React.FC = () => {
                     value={formData.company}
                     onChange={handleChange}
                     placeholder="Seu nome ou nome da empresa"
-                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                   />
                 </div>
                 <div>
@@ -119,7 +119,7 @@ export const ContactForm: React.FC = () => {
                     required
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                   >
                     <option value="">Selecione um serviço</option>
                     <option value="recuperacao">Recuperação de Veículo</option>
@@ -140,14 +140,14 @@ export const ContactForm: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Descreva brevemente sua necessidade..."
-                  className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                  className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                 ></textarea>
               </div>
 
               <button 
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full py-5 rounded-xl font-black text-lg flex items-center justify-center gap-3 transition-all ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary text-white hover:bg-accent shadow-xl active:scale-95'}`}
+                className={`w-full py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all duration-300 ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary text-white hover:bg-accent shadow-xl hover:-translate-y-1 active:scale-95'}`}
               >
                 {isSubmitting ? 'ENVIANDO...' : 'ENVIAR SOLICITAÇÃO 🚀'}
               </button>
