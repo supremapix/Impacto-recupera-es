@@ -138,125 +138,43 @@ const testimonials: Testimonial[] = [
     content: "Tive um problema com apropriação indébita e eles resolveram de forma jurídica e operacional exemplar.",
     image: "https://i.pravatar.cc/150?u=carlos",
     rating: 4.6
-  },
-  {
-    id: 16,
-    name: "Amanda Silveira",
-    role: "Logística",
-    company: "MovelSul",
-    content: "Equipe de pronta resposta nota 10. Sempre presentes quando precisamos de averiguação de carga.",
-    image: "https://i.pravatar.cc/150?u=amanda",
-    rating: 5.0
-  },
-  {
-    id: 17,
-    name: "Paulo Junior",
-    role: "Estudante",
-    content: "Recuperaram meu carro furtado no estacionamento da faculdade. Muito rápidos!",
-    image: "https://i.pravatar.cc/150?u=pauloj",
-    rating: 4.5
-  },
-  {
-    id: 18,
-    name: "Tereza Cristina",
-    role: "Empresária",
-    content: "A tecnologia que eles usam é impressionante. O sinal não falha nem em locais fechados.",
-    image: "https://i.pravatar.cc/150?u=tereza",
-    rating: 5.0
-  },
-  {
-    id: 19,
-    name: "Felipe Melo",
-    role: "Caminhoneiro",
-    content: "Preservaram minha carga após um acidente na serra. Ficaram comigo até o transbordo. Gratidão!",
-    image: "https://i.pravatar.cc/150?u=felipe",
-    rating: 4.9
-  },
-  {
-    id: 20,
-    name: "Sônia Aparecida",
-    role: "Aposentada",
-    content: "Muito educados e eficientes. Resolveram meu problema sem nenhuma dor de cabeça.",
-    image: "https://i.pravatar.cc/150?u=sonia",
-    rating: 5.0
-  },
-  {
-    id: 21,
-    name: "Igor Valente",
-    role: "Gerente Comercial",
-    content: "Impacto Recuperações é a melhor parceira que minha empresa já teve na área de segurança veicular.",
-    image: "https://i.pravatar.cc/150?u=igor",
-    rating: 4.8
-  },
-  {
-    id: 22,
-    name: "Viviane Rocha",
-    role: "Administradora",
-    content: "Sempre recomendo. A agilidade deles é real, não é apenas propaganda.",
-    image: "https://i.pravatar.cc/150?u=viviane",
-    rating: 4.7
-  },
-  {
-    id: 23,
-    name: "Leonardo Dias",
-    role: "Técnico em Eletrônica",
-    content: "Instalaram o rastreador e já precisei usar. Funcionou perfeitamente e a equipe foi rápida.",
-    image: "https://i.pravatar.cc/150?u=leonardo",
-    rating: 5.0
-  },
-  {
-    id: 24,
-    name: "Daniela Vaz",
-    role: "Corretora de Seguros",
-    content: "Indico para todos os meus clientes. A taxa de recuperação da Impacto ajuda a reduzir o valor do prêmio do seguro.",
-    image: "https://i.pravatar.cc/150?u=daniela",
-    rating: 5.0
-  },
-  {
-    id: 25,
-    name: "Samuel Brito",
-    role: "Gestor de Riscos",
-    company: "SafeRoad",
-    content: "Parceria estratégica fundamental para nossas operações no Sudeste. Profissionalismo acima da média.",
-    image: "https://i.pravatar.cc/150?u=samuel",
-    rating: 4.9
   }
 ];
 
 const TestimonialCard: React.FC<{ t: Testimonial }> = ({ t }) => (
-  <div className="bg-gray-50 p-8 rounded-[2rem] border border-gray-100 hover:bg-white hover:shadow-xl transition-all duration-300 w-full mb-8">
+  <div className="bg-gray-50 p-6 md:p-8 rounded-[2rem] border border-gray-100 hover:bg-white hover:shadow-xl transition-all duration-300 w-full mb-6 md:mb-8">
     <div className="flex gap-1 mb-4">
       {[...Array(5)].map((_, i) => (
         <Star 
           key={i} 
-          size={14} 
+          size={12} 
           className={i < Math.floor(t.rating) ? "text-yellow-500" : "text-gray-300"} 
           fill={i < Math.floor(t.rating) ? "currentColor" : "none"} 
         />
       ))}
-      <span className="text-xs font-black text-accent ml-2">{t.rating.toFixed(1)}</span>
+      <span className="text-[10px] font-black text-accent ml-2">{t.rating.toFixed(1)}</span>
     </div>
-    <p className="text-gray-600 text-sm italic leading-relaxed mb-6">"{t.content}"</p>
+    <p className="text-gray-600 text-xs md:text-sm italic leading-relaxed mb-6">"{t.content}"</p>
     <div className="flex items-center gap-4">
-      <img src={t.image} alt={t.name} className="w-12 h-12 rounded-full border-2 border-white shadow-sm" />
+      <img src={t.image} alt={t.name} className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-white shadow-sm" loading="lazy" />
       <div>
-        <h4 className="font-black text-accent uppercase text-xs tracking-tighter">{t.name}</h4>
-        <p className="text-primary font-bold text-[10px] uppercase tracking-widest">{t.role}</p>
+        <h4 className="font-black text-accent uppercase text-[10px] md:text-xs tracking-tighter">{t.name}</h4>
+        <p className="text-primary font-bold text-[8px] md:text-[10px] uppercase tracking-widest">{t.role}</p>
       </div>
     </div>
   </div>
 );
 
 export const Testimonials: React.FC = () => {
-  // Split testimonials into columns for a richer effect
-  const col1 = testimonials.slice(0, 9);
-  const col2 = testimonials.slice(9, 17);
-  const col3 = testimonials.slice(17);
+  // Balanced testimonials for performance
+  const col1 = testimonials.slice(0, 5);
+  const col2 = testimonials.slice(5, 10);
+  const col3 = testimonials.slice(10, 15);
 
   return (
     <section id="depoimentos" className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fadeInUp">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-4 font-bold text-xs tracking-widest uppercase">
             <Star size={14} fill="currentColor" />
             Prova Social de Alto Impacto
@@ -265,18 +183,18 @@ export const Testimonials: React.FC = () => {
             FEEDBACK DOS <span className="text-primary">CLIENTES</span>
           </h2>
           <p className="text-gray-400 font-bold uppercase tracking-[0.2em] text-[10px] mt-2">
-            Mais de <span className="text-accent">1.500 veículos recuperados</span> anualmente
+            Comprometimento e Resultados Reais
           </p>
-          <div className="w-24 h-2 bg-primary mx-auto rounded-full mt-4"></div>
+          <div className="w-24 h-1.5 bg-primary mx-auto rounded-full mt-4"></div>
         </div>
 
-        {/* Infinite Scrolling Container */}
-        <div className="relative h-[600px] md:h-[800px] overflow-hidden">
-          {/* Top and Bottom Gradients for smooth fade */}
-          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent z-20 pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-20 pointer-events-none"></div>
+        {/* Scrolling Container */}
+        <div className="relative h-[500px] md:h-[700px] overflow-hidden">
+          {/* Top and Bottom Gradients */}
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-20 pointer-events-none"></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 h-full scroller-container">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 h-full scroller-container">
             {/* Column 1 */}
             <div className="flex flex-col scroller-content animate-infinite-scroll-up">
               {[...col1, ...col1].map((t, idx) => (
@@ -284,14 +202,14 @@ export const Testimonials: React.FC = () => {
               ))}
             </div>
 
-            {/* Column 2 - Hidden on small mobile, slower speed */}
+            {/* Column 2 */}
             <div className="hidden md:flex flex-col scroller-content animate-infinite-scroll-up-delayed">
               {[...col2, ...col2].map((t, idx) => (
                 <TestimonialCard key={`${t.id}-${idx}`} t={t} />
               ))}
             </div>
 
-            {/* Column 3 - Visible on large screens */}
+            {/* Column 3 */}
             <div className="hidden lg:flex flex-col scroller-content animate-infinite-scroll-up">
               {[...col3, ...col3].map((t, idx) => (
                 <TestimonialCard key={`${t.id}-${idx}`} t={t} />
@@ -300,20 +218,20 @@ export const Testimonials: React.FC = () => {
           </div>
         </div>
         
-        <div className="mt-12 text-center">
-          <div className="inline-block p-6 bg-accent rounded-[2rem] shadow-2xl">
+        <div className="mt-12 text-center animate-fadeInUp">
+          <div className="inline-block p-5 sm:p-6 bg-accent rounded-[2rem] shadow-2xl">
              <div className="flex items-center gap-4 text-white">
                 <div className="flex -space-x-3">
-                   {testimonials.slice(0, 5).map(t => (
-                      <img key={t.id} src={t.image} className="w-10 h-10 rounded-full border-2 border-accent" alt="User" />
+                   {testimonials.slice(0, 3).map(t => (
+                      <img key={t.id} src={t.image} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-accent" alt="User" />
                    ))}
-                   <div className="w-10 h-10 rounded-full bg-primary border-2 border-accent flex items-center justify-center text-[10px] font-black">+20</div>
+                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary border-2 border-accent flex items-center justify-center text-[8px] sm:text-[10px] font-black">+500</div>
                 </div>
                 <div className="text-left">
-                   <div className="flex gap-1 mb-0.5">
-                      {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="#eab308" className="text-yellow-500" />)}
+                   <div className="flex gap-0.5 mb-0.5">
+                      {[...Array(5)].map((_, i) => <Star key={i} size={10} fill="#eab308" className="text-yellow-500" />)}
                    </div>
-                   <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Nota Média de <span className="text-white">4.9/5.0</span> no Google Business</p>
+                   <p className="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-gray-400">Nota Média de <span className="text-white">4.9/5.0</span> no Google Business</p>
                 </div>
              </div>
           </div>
