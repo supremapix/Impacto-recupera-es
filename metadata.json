@@ -1,6 +1,19 @@
 {
-  "name": "Impacto Recuperações - Pronta Resposta",
+  "name": "Impacto Recuperações",
+  "short_name": "Impacto",
   "description": "Site profissional de pronta resposta e recuperação de veículos com atendimento nacional 24/7.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#232323",
+  "theme_color": "#5a6fa6",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
   "requestFramePermissions": [
     "geolocation"
   ]

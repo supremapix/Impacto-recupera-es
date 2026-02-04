@@ -16,6 +16,7 @@ import { Testimonials } from './components/Testimonials';
 import { NotFound } from './components/NotFound';
 import { LocationShelf } from './components/LocationShelf';
 import { LocationPage } from './components/LocationPage';
+import { InstagramSection } from './components/InstagramSection';
 
 // Novos Componentes de Página
 import { ServicesPage } from './pages/ServicesPage';
@@ -28,6 +29,7 @@ const HomePage: React.FC = () => (
     <Hero />
     <Carousel />
     <CoverageMap />
+    <InstagramSection />
     <AccordionSection />
     <Testimonials />
     <FeaturedVisual />
