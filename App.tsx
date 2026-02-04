@@ -14,6 +14,8 @@ import { CoverageMap } from './components/CoverageMap';
 import { FeaturedVisual } from './components/FeaturedVisual';
 import { Testimonials } from './components/Testimonials';
 import { NotFound } from './components/NotFound';
+import { LocationShelf } from './components/LocationShelf';
+import { LocationPage } from './components/LocationPage';
 
 const HomePage: React.FC = () => (
   <main>
@@ -25,6 +27,7 @@ const HomePage: React.FC = () => (
     <AccordionSection />
     <Testimonials />
     <FeaturedVisual />
+    <LocationShelf />
     <EmergencyBanner />
     <section id="contato" className="py-20 bg-gray-50">
       <ContactForm />
@@ -38,6 +41,7 @@ const App: React.FC = () => {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/servicos-em/:city" element={<LocationPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

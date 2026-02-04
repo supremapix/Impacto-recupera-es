@@ -14,29 +14,6 @@
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <link rel="canonical" href="https://www.impactorecuperacoes.com.br/">
 
-    <!-- OPEN GRAPH -->
-    <meta property="og:locale" content="pt_BR">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Recuperação de Veículos | Pronta Resposta 24h | Impacto Recuperações">
-    <meta property="og:description" content="Especialistas em recuperação de veículos roubados e furtados. Central 24/7. Atendimento tático em todo Brasil.">
-    <meta property="og:url" content="https://www.impactorecuperacoes.com.br/">
-    <meta property="og:site_name" content="Impacto Recuperações">
-    <meta property="og:image" content="https://www.impactorecuperacoes.com.br/assets/images/impacto-recuperacoes-og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:type" content="image/jpeg">
-
-    <!-- GEOLOCALIZAÇÃO -->
-    <meta name="geo.region" content="BR-SP">
-    <meta name="geo.placename" content="São Paulo">
-    <meta name="geo.position" content="-23.5505;-46.6333">
-
-    <!-- MOBILE OPTIMIZATION -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#232323">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -62,6 +39,7 @@
               'pulse-glow': 'pulseGlow 2s infinite',
               'infinite-scroll-up': 'infiniteScrollUp 45s linear infinite',
               'infinite-scroll-up-delayed': 'infiniteScrollUp 55s linear infinite',
+              'infinite-scroll-x': 'infiniteScrollX 50s linear infinite',
             },
             keyframes: {
               heartBeat: { '0%, 100%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.2)' } },
@@ -74,7 +52,8 @@
               float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
               textReveal: { '0%': { transform: 'translateY(100%)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
               pulseGlow: { '0%, 100%': { boxShadow: '0 0 0 0 rgba(90, 111, 166, 0.4)' }, '50%': { boxShadow: '0 0 15px 5px rgba(90, 111, 166, 0)' } },
-              infiniteScrollUp: { '0%': { transform: 'translateY(0)' }, '100%': { transform: 'translateY(-50%)' } }
+              infiniteScrollUp: { '0%': { transform: 'translateY(0)' }, '100%': { transform: 'translateY(-50%)' } },
+              infiniteScrollX: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } }
             }
           }
         }
@@ -89,17 +68,7 @@
         overscroll-behavior-y: none;
       }
       .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-      @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-      .animate-spin-slow { animation: spin 10s linear infinite; }
-      .overflow-hidden-text { overflow: hidden; }
-      
-      .scroller-container:active .scroller-content,
-      .scroller-container:hover .scroller-content {
-        animation-play-state: paused;
-      }
-
-      /* Fix to avoid tap highlight on mobile */
-      * { -webkit-tap-highlight-color: transparent; }
+      .scroller-x-container:hover .scroller-x-content { animation-play-state: paused; }
     </style>
 <script type="importmap">
 {
