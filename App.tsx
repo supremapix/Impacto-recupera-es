@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Carousel } from './components/Carousel';
@@ -18,7 +18,7 @@ import { LocationShelf } from './components/LocationShelf';
 import { LocationPage } from './components/LocationPage';
 
 const HomePage: React.FC = () => (
-  <main>
+  <div className="animate-page-enter">
     <div id="home">
       <Hero />
     </div>
@@ -32,18 +32,22 @@ const HomePage: React.FC = () => (
     <section id="contato" className="py-20 bg-gray-50">
       <ContactForm />
     </section>
-  </main>
+  </div>
 );
 
 const App: React.FC = () => {
+  const location = useLocation();
+
   return (
     <div className="relative min-h-screen bg-white">
       <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/servicos-em/:city" element={<LocationPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <div key={location.pathname} className="transition-all duration-500">
+        <Routes location={location}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/servicos-em/:city" element={<div className="animate-page-enter"><LocationPage /></div>} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
       <Footer />
       <WhatsAppButton />
       <BackToTop />
