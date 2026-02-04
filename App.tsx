@@ -8,6 +8,7 @@ import { AccordionSection } from './components/Accordion';
 import { ContactForm } from './components/ContactForm';
 import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
+import { SocialShare } from './components/SocialShare';
 import { EmergencyBanner } from './components/EmergencyBanner';
 import { BackToTop } from './components/BackToTop';
 import { CoverageMap } from './components/CoverageMap';
@@ -52,6 +53,7 @@ const App: React.FC = () => {
   return (
     <div className="relative min-h-screen bg-white">
       <Header />
+      <SocialShare />
       <div key={location.pathname} className="animate-page-enter">
         <Routes>
           <Route path="/" element={<HomePage />} />
