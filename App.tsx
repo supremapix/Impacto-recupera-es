@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { SocialShare } from './components/SocialShare';
-import { FloatingActionButtons } from './components/FloatingActionButtons';
+import { FloatingActions } from './components/FloatingActions';
 import { NotFound } from './components/NotFound';
 import { CITIES_DATA } from './src/data/cities';
 
@@ -77,8 +77,8 @@ export const App: React.FC = () => {
       {/* Rodapé Oficial com Dados E-E-A-T & NAP */}
       <Footer />
 
-      {/* Botões Flutuantes Unificados (WhatsApp + Voltar ao Topo) */}
-      <FloatingActionButtons />
+      {/* Botões Flutuantes Unificados (Compartilhamento + Contato Rápido + Voltar ao Topo) */}
+      <FloatingActions />
     </div>
   );
 };
