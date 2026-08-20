@@ -1,94 +1,104 @@
-
-import React, { useEffect, useState } from 'react';
-import { HelpCircle, ChevronRight, Zap, Search, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { ChevronDown, HelpCircle, ShieldCheck } from 'lucide-react';
+import { FAQ_INSTITUCIONAL, FaqItem } from '../src/data/faq';
+import Container from '../src/components/ui/Container';
+import Section from '../src/components/ui/Section';
 
 interface TacticalQAProps {
-  cityName: string;
+  cityName?: string;
+  items?: FaqItem[];
+  title?: string;
+  subtitle?: string;
 }
 
-export const TacticalQA: React.FC<TacticalQAProps> = ({ cityName }) => {
-  const [visibleItems, setVisibleItems] = useState<number>(12);
+/**
+ * Componente de Perguntas Frequentes Táticas (PARTE 10 & 12)
+ * Utiliza o Source of Truth em src/data/faq.ts com suporte a acordeom acessível.
+ */
+export const TacticalQA: React.FC<TacticalQAProps> = ({
+  cityName,
+  items,
+  title = 'Perguntas Frequentes & Protocolos Operacionais',
+  subtitle = 'Respostas diretas e técnicas sobre os procedimentos de pronta resposta 24 horas.',
+}) => {
+  const faqList: FaqItem[] = items || FAQ_INSTITUCIONAL;
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const generateQA = (city: string) => {
-    const templates = [
-      { q: "Como funciona a recuperação de veículos em {city}?", a: "Nossa unidade em {city} opera com tecnologia CMD e radiofrequência, permitindo localizar veículos mesmo em galpões ou subsolos blindados em até 30 minutos." },
-      { q: "Qual o tempo médio de chegada em {city}?", a: "Para ocorrências no perímetro urbano de {city}, nosso tempo médio de resposta tática é inferior a 25 minutos após o acionamento da central." },
-      { q: "Vocês fazem escolta de cargas em {city}?", a: "Sim, realizamos escolta armada e velada para caminhões e cargas de alto valor saindo ou cruzando a região de {city}." },
-      { q: "A Impacto Recuperações atende roubos de motos em {city}?", a: "Atendemos todos os tipos de veículos em {city}, incluindo motocicletas de alta cilindrada, com agentes especializados em perseguição urbana." },
-      { q: "Existe base física em {city}?", a: "Mantemos unidades de pronta resposta estratégicas em {city} para garantir que o deslocamento seja o mais rápido do mercado." },
-      { q: "Como solicitar uma varredura de sinal em {city}?", a: "Basta entrar em contato com nossa central 24h. Enviamos uma unidade móvel em {city} equipada com analisadores de espectro para detectar jammers." },
-      { q: "O serviço de recuperação em {city} é garantido?", a: "Nossa taxa de sucesso em {city} é superior a 94%, graças ao mapeamento constante de rotas de fuga e desmanches na região." },
-      { q: "Vocês atendem apropriação indébita em {city}?", a: "Sim, somos especialistas em recuperação de ativos para locadoras que tiveram veículos desviados em {city} e região." }
-    ];
-
-    const allQA = [];
-    for (let i = 0; i < 50; i++) {
-      const template = templates[i % templates.length];
-      allQA.push({
-        id: i,
-        question: template.q.replace(/{city}/g, city),
-        answer: template.a.replace(/{city}/g, city)
-      });
-    }
-    return allQA;
+  const toggleAccordion = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
   };
 
-  const qaData = generateQA(cityName);
-
   return (
-    <section className="py-24 bg-white overflow-hidden border-t border-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 bg-accent/5 px-6 py-2.5 rounded-full mb-6 border border-accent/10">
-            <Search size={16} className="text-primary animate-pulse" />
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-accent">Base de Conhecimento Tático: {cityName}</span>
+    <Section id="faq-tatico" className="bg-gray-50 border-t border-b border-gray-200">
+      <Container>
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-[#5a6fa6] px-4 py-1.5 rounded-full mb-4 font-bold text-xs tracking-wider uppercase border border-blue-100">
+            <HelpCircle className="w-4 h-4 text-[#5a6fa6]" />
+            <span>{cityName ? `Dúvidas Frequentes: ${cityName}` : 'Central de Dúvidas'}</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-black text-accent uppercase italic leading-none tracking-tighter mb-6">
-            Inteligência <span className="text-primary">Regional</span>
+
+          <h2 className="t-h2 font-black text-gray-900 tracking-tight mb-4 text-balance">
+            {cityName ? `Como funciona a pronta resposta em ${cityName}` : title}
           </h2>
-          <p className="text-gray-500 font-medium max-w-2xl mx-auto text-lg">
-            Esclarecemos todas as dúvidas operacionais sobre nossos serviços de pronta resposta e escolta em {cityName}.
+
+          <p className="t-body text-gray-600 text-pretty">
+            {cityName
+              ? `Orientações operacionais sobre tempo de resposta, acionamento e recuperação de veículos na região de ${cityName}.`
+              : subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {qaData.slice(0, visibleItems).map((item, idx) => (
-            <div 
-              key={item.id} 
-              className="group bg-gray-50 p-8 rounded-[2.5rem] border border-gray-100 hover:bg-white hover:shadow-[0_30px_60px_rgba(0,0,0,0.08)] transition-all duration-700 animate-fadeInUp"
-              style={{ animationDelay: `${(idx % 6) * 0.1}s` }}
-            >
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                  <Zap size={20} />
-                </div>
-                <h4 className="text-lg font-black text-accent uppercase leading-tight tracking-tight group-hover:text-primary transition-colors">
-                  {item.question}
-                </h4>
-              </div>
-              <p className="text-gray-500 font-medium leading-relaxed border-l-2 border-gray-200 pl-4 group-hover:border-primary transition-colors">
-                {item.answer}
-              </p>
-              <div className="mt-6 flex items-center gap-2 text-[10px] font-black uppercase text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                <span>Protocolo Ativo</span>
-                <ChevronRight size={14} />
-              </div>
-            </div>
-          ))}
-        </div>
+        <div className="max-w-4xl mx-auto space-y-4">
+          {faqList.map((item, index) => {
+            const isOpen = openIndex === index;
+            const questionText = cityName
+              ? item.pergunta.replace(/em Indaiatuba|no Brasil/gi, `em ${cityName}`)
+              : item.pergunta;
+            const answerText = cityName
+              ? item.resposta.replace(/Indaiatuba/g, cityName)
+              : item.resposta;
 
-        {visibleItems < 50 && (
-          <div className="mt-20 text-center">
-            <button 
-              onClick={() => setVisibleItems(prev => Math.min(prev + 12, 50))}
-              className="bg-accent text-white px-12 py-6 rounded-[2rem] font-black text-lg hover:bg-primary transition-all shadow-xl active:scale-95 flex items-center gap-4 mx-auto"
-            >
-              CARREGAR MAIS PERGUNTAS <HelpCircle size={24} />
-            </button>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-6">Mostrando {visibleItems} de 50 tópicos de inteligência em {cityName}</p>
-          </div>
-        )}
-      </div>
-    </section>
+            return (
+              <div
+                key={item.id || index}
+                className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden transition-colors duration-200"
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleAccordion(index)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${item.id || index}`}
+                  id={`faq-btn-${item.id || index}`}
+                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 font-bold text-gray-900 hover:text-[#5a6fa6] transition-colors focus:outline-none focus:ring-2 focus:ring-[#5a6fa6] rounded-2xl"
+                >
+                  <span className="text-base sm:text-lg flex items-start gap-3">
+                    <ShieldCheck className="w-5 h-5 text-[#5a6fa6] shrink-0 mt-0.5" />
+                    <span>{questionText}</span>
+                  </span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-gray-400 shrink-0 transition-transform duration-200 ${
+                      isOpen ? 'rotate-180 text-[#5a6fa6]' : ''
+                    }`}
+                  />
+                </button>
+
+                {isOpen && (
+                  <div
+                    id={`faq-answer-${item.id || index}`}
+                    role="region"
+                    aria-labelledby={`faq-btn-${item.id || index}`}
+                    className="px-5 sm:px-6 pb-6 pt-1 text-gray-700 text-sm sm:text-base leading-relaxed border-t border-gray-100"
+                  >
+                    <p className="max-w-[70ch] text-pretty">{answerText}</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </Container>
+    </Section>
   );
 };
+
+export default TacticalQA;

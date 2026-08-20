@@ -1,73 +1,84 @@
-
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { Carousel } from './components/Carousel';
-import { AccordionSection } from './components/Accordion';
-import { ContactForm } from './components/ContactForm';
 import { Footer } from './components/Footer';
-import { WhatsAppButton } from './components/WhatsAppButton';
 import { SocialShare } from './components/SocialShare';
-import { EmergencyBanner } from './components/EmergencyBanner';
-import { BackToTop } from './components/BackToTop';
-import { CoverageMap } from './components/CoverageMap';
-import { FeaturedVisual } from './components/FeaturedVisual';
-import { Testimonials } from './components/Testimonials';
+import { FloatingActionButtons } from './components/FloatingActionButtons';
 import { NotFound } from './components/NotFound';
-import { LocationShelf } from './components/LocationShelf';
-import { LocationPage } from './components/LocationPage';
-import { InstagramSection } from './components/InstagramSection';
+import { CITIES_DATA } from './src/data/cities';
 
-// Novos Componentes de Página
+// Páginas
+import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { TestimonialsPage } from './pages/TestimonialsPage';
 import { CoveragePage } from './pages/CoveragePage';
 import { ContactPage } from './pages/ContactPage';
+import { CityLocalSeoPage } from './pages/CityLocalSeoPage';
 
-const HomePage: React.FC = () => (
-  <div className="animate-page-enter">
-    <Hero />
-    <Carousel />
-    <CoverageMap />
-    <InstagramSection />
-    <AccordionSection />
-    <Testimonials />
-    <FeaturedVisual />
-    <LocationShelf />
-    <EmergencyBanner />
-    <section className="py-20 bg-gray-50">
-      <ContactForm />
-    </section>
-  </div>
-);
+/**
+ * Componente de Fallback Inteligente para Rotas Catch-All
+ * Conforme Regra Crítica de Roteamento React Router v6:
+ * Verifica manualmente location.pathname para padrões com prefixo textual
+ * sem barra separadora (ex.: /recuperacao-de-veiculos-em-indaiatuba ou /servicos-em-campinas)
+ */
+const FallbackOrCityRoute: React.FC = () => {
+  const location = useLocation();
+  const path = location.pathname.toLowerCase();
 
-const App: React.FC = () => {
+  const prefixes = [
+    '/servicos-em/',
+    '/servicos-em-',
+    '/recuperacao-de-veiculos-em-',
+    '/pronta-resposta-em-',
+    '/conserto-de-geladeira-em-',
+  ];
+
+  for (const prefix of prefixes) {
+    if (path.startsWith(prefix)) {
+      const slug = path.slice(prefix.length).replace(/\/+$/, '');
+      if (slug && CITIES_DATA[slug]) {
+        return <CityLocalSeoPage citySlugOverride={slug} />;
+      }
+    }
+  }
+
+  return <NotFound />;
+};
+
+export const App: React.FC = () => {
   const location = useLocation();
 
-  // Scroll to top on route change
+  // Scroll suave para o topo em cada mudança de rota
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
   }, [location.pathname]);
 
   return (
-    <div className="relative min-h-screen bg-white">
+    <div className="relative min-h-screen bg-white flex flex-col justify-between text-gray-900 selection:bg-[#5a6fa6]/20 selection:text-gray-900">
+      {/* Header Institucional com Acessibilidade e Skip Links */}
       <Header />
+
+      {/* Compartilhamento Social Não Obstrutivo */}
       <SocialShare />
-      <div key={location.pathname} className="animate-page-enter">
+
+      {/* Conteúdo Principal com Transição */}
+      <main id="main-content" className="flex-grow">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/servicos" element={<ServicesPage />} />
           <Route path="/depoimentos" element={<TestimonialsPage />} />
           <Route path="/abrangencia" element={<CoveragePage />} />
           <Route path="/contato" element={<ContactPage />} />
-          <Route path="/servicos-em/:city" element={<LocationPage />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/servicos-em/:city" element={<CityLocalSeoPage />} />
+          <Route path="*" element={<FallbackOrCityRoute />} />
         </Routes>
-      </div>
+      </main>
+
+      {/* Rodapé Oficial com Dados E-E-A-T & NAP */}
       <Footer />
-      <WhatsAppButton />
-      <BackToTop />
+
+      {/* Botões Flutuantes Unificados (WhatsApp + Voltar ao Topo) */}
+      <FloatingActionButtons />
     </div>
   );
 };

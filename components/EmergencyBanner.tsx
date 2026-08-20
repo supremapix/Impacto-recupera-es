@@ -1,35 +1,37 @@
-
 import React, { useState } from 'react';
-import { ShieldAlert, MapPin, Zap } from 'lucide-react';
+import { ShieldAlert, MapPin, Zap, Navigation } from 'lucide-react';
+import { COMPANY } from '../src/data/company';
 
 export const EmergencyBanner: React.FC = () => {
   const [distance, setDistance] = useState<number | null>(null);
   const [isWithinRange, setIsWithinRange] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // HQ Coordinates: São Paulo SP
-  const HQ_LAT = -23.5505;
-  const HQ_LNG = -46.6333;
+  // Coordenadas da Sede Operacional Oficial (Indaiatuba/SP) com fallback seguro
+  const HQ_LAT = COMPANY.sede?.coordenadas?.lat ?? COMPANY.endereco?.coordenadas?.lat ?? -23.0903;
+  const HQ_LNG = COMPANY.sede?.coordenadas?.lng ?? COMPANY.endereco?.coordenadas?.lng ?? -47.2181;
 
   const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
-    const R = 6371; // Radius of the earth in km
+    const R = 6371; // Raio da Terra em km
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLon = (lon2 - lon1) * (Math.PI / 180);
-    const a = 
+    const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * 
+      Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
       Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c; // Distance in km
+    return R * c;
   };
 
   const checkCoverage = () => {
     if (!navigator.geolocation) {
-      alert('Geolocalização não suportada no seu navegador.');
+      setErrorMsg('Geolocalização não suportada no seu navegador.');
       return;
     }
 
     setLoading(true);
+    setErrorMsg(null);
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const dist = calculateDistance(
@@ -39,82 +41,87 @@ export const EmergencyBanner: React.FC = () => {
           HQ_LNG
         );
         setDistance(dist);
-        setIsWithinRange(dist <= 200);
+        setIsWithinRange(dist <= 250);
         setLoading(false);
       },
       (error) => {
-        console.error("Geolocation error:", error);
+        console.warn('Geolocation permission or error:', error.message);
+        setErrorMsg('Permissão de localização não concedida. Nossa rede atende todo o território nacional.');
         setLoading(false);
-      }
+      },
+      { timeout: 8000 }
     );
   };
 
   return (
-    <div className="bg-[#1a1a1a] py-10 text-white relative overflow-hidden border-t border-white/5">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
-        
-        {/* Left Side: Icon & Text */}
-        <div className="flex items-center gap-6">
-          <div className="relative">
-            <div className="bg-[#c62828] w-20 h-20 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(198,40,40,0.4)] animate-pulse">
-              <ShieldAlert size={40} className="text-white" />
-            </div>
-            <div className="absolute -top-1 -right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center">
-              <span className="text-red-600 font-black text-xs">!</span>
-            </div>
+    <div className="bg-[#171922] py-8 text-white relative overflow-hidden border-t border-white/10">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+        {/* Lado Esquerdo: Identificação & Sede */}
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-2xl bg-[#5a6fa6]/20 border border-[#5a6fa6]/40 flex items-center justify-center shrink-0">
+            <ShieldAlert className="w-7 h-7 text-[#8ba2d4]" />
           </div>
           <div>
-            <h4 className="text-2xl md:text-3xl font-black uppercase italic tracking-tighter">
-              Atendimento de Emergência
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">
+                Sede Indaiatuba/SP
+              </span>
+              <span className="text-xs text-gray-400">Atendimento 24h</span>
+            </div>
+            <h4 className="text-lg sm:text-xl font-black text-white mt-1">
+              Verificação de Raio de Pronta Resposta
             </h4>
-            <p className="text-gray-400 font-medium text-lg">
-              Verifique se você está na área de pronta resposta rápida (200km)
+            <p className="text-xs sm:text-sm text-gray-300">
+              Base operacional estratégica conectada às rodovias SP-075, Anhanguera e Bandeirantes.
             </p>
           </div>
         </div>
 
-        {/* Right Side: Button / Result */}
+        {/* Lado Direito: Ação de checagem */}
         <div className="flex flex-col items-center md:items-end w-full md:w-auto">
           {!isWithinRange && distance === null ? (
-            <button 
-              onClick={checkCoverage}
-              disabled={loading}
-              className="bg-primary text-white hover:bg-white hover:text-primary transition-all duration-300 px-10 py-5 rounded-2xl font-black text-lg flex items-center gap-3 shadow-2xl uppercase tracking-tighter min-w-[280px] justify-center hover:-translate-y-1 active:scale-95"
-            >
-              {loading ? (
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
-                  LOCALIZANDO...
-                </div>
-              ) : (
-                <>
-                  <MapPin size={24} />
-                  Checar Cobertura Local
-                </>
-              )}
-            </button>
-          ) : (
-            <div className={`px-8 py-5 rounded-2xl flex items-center gap-4 border-2 shadow-2xl animate-fadeInUp ${isWithinRange ? 'bg-green-600/10 border-green-500' : 'bg-yellow-600/10 border-yellow-500'}`}>
-              <div className={`p-3 rounded-full ${isWithinRange ? 'bg-green-600' : 'bg-yellow-600'}`}>
-                <Zap size={24} className="text-white" fill="currentColor" />
-              </div>
-              <div>
-                <p className="font-black text-xl uppercase italic">
-                  {isWithinRange ? 'ÁREA COBERTA!' : 'FORA DA ZONA EXPRESSA'}
+            <div className="flex flex-col items-center md:items-end gap-2">
+              <button
+                type="button"
+                onClick={checkCoverage}
+                disabled={loading}
+                className="bg-[#5a6fa6] hover:bg-[#4b5d8d] text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-colors shadow-md disabled:opacity-50"
+              >
+                {loading ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <span>Calculando distância...</span>
+                  </>
+                ) : (
+                  <>
+                    <Navigation className="w-4 h-4" />
+                    <span>Checar Distância da Base</span>
+                  </>
+                )}
+              </button>
+              {errorMsg && (
+                <p className="text-xs text-amber-300 font-medium text-center md:text-right max-w-xs">
+                  {errorMsg}
                 </p>
-                <p className="text-sm font-bold opacity-70">
-                  {isWithinRange 
-                    ? `Nossa equipe está a apenas ${distance?.toFixed(0)}km de você.` 
-                    : `Sua distância: ${distance?.toFixed(0)}km. Atendimento sujeito a disponibilidade.`}
+              )}
+            </div>
+          ) : (
+            <div className={`px-5 py-3 rounded-xl flex items-center gap-3 border ${isWithinRange ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-200' : 'bg-blue-950/40 border-blue-500/40 text-blue-200'}`}>
+              <Zap className="w-5 h-5 shrink-0" />
+              <div>
+                <p className="font-bold text-sm">
+                  {isWithinRange ? 'Raio Operacional Imediato' : 'Cobertura via Rede Nacional'}
+                </p>
+                <p className="text-xs opacity-90">
+                  {distance !== null ? `Distância estimada da sede: ${Math.round(distance)} km.` : ''} Atendimento 24/7.
                 </p>
               </div>
             </div>
           )}
         </div>
       </div>
-      
-      {/* Decorative slant overlay for dark theme */}
-      <div className="absolute top-0 right-0 w-1/4 h-full bg-white/[0.02] -skew-x-12 transform origin-top-right"></div>
     </div>
   );
 };
+
+export default EmergencyBanner;

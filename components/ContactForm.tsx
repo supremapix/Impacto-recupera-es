@@ -1,14 +1,15 @@
-
 import React, { useState } from 'react';
-import { Send, PhoneCall, ShieldCheck, Mail, Building, ClipboardList, MessageSquare } from 'lucide-react';
+import { Send, PhoneCall, ShieldCheck, Mail, Building, ClipboardList, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { COMPANY } from '../src/data/company';
 
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
-    phone: '',
+    nome: '',
+    telefone: '',
     email: '',
-    company: '',
-    service: '',
-    message: ''
+    empresa: '',
+    servico: 'recuperacao',
+    mensagem: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -19,8 +20,8 @@ export const ContactForm: React.FC = () => {
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-      setFormData({ phone: '', email: '', company: '', service: '', message: '' });
-    }, 1800);
+      setFormData({ nome: '', telefone: '', email: '', empresa: '', servico: 'recuperacao', mensagem: '' });
+    }, 1200);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -28,151 +29,184 @@ export const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 max-w-6xl">
-      <div className="flex flex-col lg:flex-row gap-0 rounded-[3rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.15)] border border-gray-100 bg-white">
-        
-        {/* Sidebar Informativa */}
-        <div className="lg:w-[35%] bg-accent p-10 md:p-14 text-white flex flex-col justify-between relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-          <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 bg-primary/20 px-4 py-2 rounded-full mb-8 border border-white/10">
-              <ShieldCheck size={16} className="text-primary-light" />
-              <span className="text-[10px] font-black uppercase tracking-widest">Protocolo de Segurança</span>
+    <div className="w-full max-w-5xl mx-auto">
+      <div className="flex flex-col lg:flex-row rounded-3xl overflow-hidden shadow-xl border border-gray-200 bg-white">
+        {/* Sidebar Informativa Oficial */}
+        <div className="lg:w-5/12 bg-[#171922] p-8 sm:p-10 text-white flex flex-col justify-between">
+          <div>
+            <div className="inline-flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-full mb-6 border border-white/15">
+              <ShieldCheck className="w-4 h-4 text-[#8ba2d4] shrink-0" />
+              <span className="text-xs font-bold uppercase tracking-wider text-gray-200">
+                Pronta Resposta 24h
+              </span>
             </div>
-            <h2 className="text-4xl font-black mb-6 uppercase italic leading-none tracking-tighter">
-              CENTRAL DE <br /> <span className="text-primary">INTELIGÊNCIA</span>
-            </h2>
-            <p className="text-gray-400 font-medium mb-10 leading-relaxed text-lg">
-              Solicite orçamentos para escolta armada ou acione nossa pronta resposta imediata.
+
+            <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight mb-4">
+              Central de Atendimento & Acionamento
+            </h3>
+
+            <p className="text-gray-300 text-sm leading-relaxed mb-8">
+              Para ocorrências em andamento, ligue diretamente para nossa central ou envie sua mensagem corporativa.
             </p>
-            
-            <div className="space-y-8">
-              <div className="flex items-center gap-5 group">
-                <div className="bg-primary p-4 rounded-2xl shadow-lg transition-transform group-hover:scale-110">
-                  <PhoneCall size={24} />
+
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-[#5a6fa6] flex items-center justify-center text-white shrink-0 shadow-md">
+                  <PhoneCall className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-black uppercase text-gray-500 tracking-widest">Linha de Emergência</p>
-                  <p className="font-black text-2xl tracking-tighter">(11) 96502-0011</p>
+                  <span className="text-xs font-mono text-gray-400 uppercase tracking-wider block">Plantão 24 Horas</span>
+                  <a
+                    href={`tel:${COMPANY.telefone.e164}`}
+                    className="font-bold text-xl text-white hover:text-[#8ba2d4] transition-colors"
+                  >
+                    {COMPANY.telefone.exibicao}
+                  </a>
                 </div>
               </div>
-              <div className="flex items-center gap-5 group">
-                <div className="bg-white/5 p-4 rounded-2xl border border-white/10 transition-transform group-hover:scale-110">
-                  <Mail size={24} className="text-primary" />
+
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-[#8ba2d4] shrink-0">
+                  <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-black uppercase text-gray-500 tracking-widest">Canal Corporativo</p>
-                  <p className="font-bold text-lg opacity-80">contato@impacto.com.br</p>
+                  <span className="text-xs font-mono text-gray-400 uppercase tracking-wider block">E-mail Institucional</span>
+                  <a
+                    href={`mailto:${COMPANY.email}`}
+                    className="font-medium text-sm text-gray-200 hover:text-white transition-colors break-all"
+                  >
+                    {COMPANY.email}
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-          
-          <div className="mt-16 p-6 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-sm relative z-10">
-            <p className="text-sm font-bold italic text-gray-300">
-              "Eficiência operacional em território nacional 24/7."
-            </p>
+
+          <div className="mt-8 pt-6 border-t border-white/10 text-xs text-gray-400 leading-relaxed font-mono">
+            <p>Sede: {COMPANY.endereco.resumo}</p>
+            <p className="mt-1">CNPJ {COMPANY.cnpj} · Desde 2019</p>
           </div>
         </div>
 
-        {/* Formulário Real */}
-        <div className="lg:w-[65%] p-8 md:p-16 bg-white relative">
+        {/* Formulário Interativo com Acessibilidade e IDs */}
+        <div className="lg:w-7/12 p-8 sm:p-10 bg-white">
           {submitted ? (
-            <div className="h-full flex flex-col items-center justify-center text-center animate-fadeIn">
-              <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mb-6 shadow-2xl shadow-green-200">
-                <Send className="text-white" size={40} />
+            <div className="py-12 flex flex-col items-center justify-center text-center">
+              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
+                <CheckCircle2 className="w-10 h-10" />
               </div>
-              <h3 className="text-4xl font-black text-accent mb-4 uppercase italic">SOLICITAÇÃO RECEBIDA!</h3>
-              <p className="text-gray-500 text-lg max-w-md mx-auto mb-10">
-                Nossa central de monitoramento já está processando seus dados. Um agente entrará em contato em instantes.
+              <h4 className="text-2xl font-black text-gray-900 mb-2">Mensagem Recebida com Sucesso</h4>
+              <p className="text-gray-600 text-sm max-w-md mx-auto mb-6">
+                Nossa central de monitoramento recebeu sua solicitação. Se for uma emergência em andamento, priorize o contato via WhatsApp ou telefone 24h.
               </p>
-              <button 
+              <button
+                type="button"
                 onClick={() => setSubmitted(false)}
-                className="text-primary font-black uppercase tracking-widest hover:underline"
+                className="text-xs font-bold uppercase tracking-wider text-[#5a6fa6] hover:underline"
               >
-                ENVIAR NOVA MENSAGEM
+                Enviar nova mensagem
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="relative group">
-                  <label className="flex items-center gap-2 text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 transition-colors group-focus-within:text-primary">
-                    <PhoneCall size={12} /> Contato WhatsApp / Fixo
+            <form onSubmit={handleSubmit} className="space-y-5" aria-label="Formulário de Contato Impacto Recuperações">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="contact-nome" className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Nome Completo *
                   </label>
-                  <input 
-                    type="tel" name="phone" required value={formData.phone} onChange={handleChange}
-                    placeholder="(00) 00000-0000"
-                    className="w-full px-6 py-5 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all font-bold text-accent placeholder:text-gray-300"
+                  <input
+                    id="contact-nome"
+                    type="text"
+                    name="nome"
+                    required
+                    value={formData.nome}
+                    onChange={handleChange}
+                    placeholder="Seu nome ou contato"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#5a6fa6] focus:ring-2 focus:ring-[#5a6fa6]/20 outline-none text-sm text-gray-900 placeholder:text-gray-400 transition-colors"
                   />
                 </div>
-                <div className="relative group">
-                  <label className="flex items-center gap-2 text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 transition-colors group-focus-within:text-primary">
-                    <Mail size={12} /> E-mail de Contato
+
+                <div>
+                  <label htmlFor="contact-telefone" className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Telefone / WhatsApp *
                   </label>
-                  <input 
-                    type="email" name="email" required value={formData.email} onChange={handleChange}
-                    placeholder="email@empresa.com.br"
-                    className="w-full px-6 py-5 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all font-bold text-accent placeholder:text-gray-300"
+                  <input
+                    id="contact-telefone"
+                    type="tel"
+                    name="telefone"
+                    required
+                    value={formData.telefone}
+                    onChange={handleChange}
+                    placeholder="(00) 00000-0000"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#5a6fa6] focus:ring-2 focus:ring-[#5a6fa6]/20 outline-none text-sm text-gray-900 placeholder:text-gray-400 transition-colors"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="relative group">
-                  <label className="flex items-center gap-2 text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 transition-colors group-focus-within:text-primary">
-                    <Building size={12} /> Empresa / Solicitante
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="contact-email" className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">
+                    E-mail Corporativo
                   </label>
-                  <input 
-                    type="text" name="company" required value={formData.company} onChange={handleChange}
-                    placeholder="Nome completo ou Razão Social"
-                    className="w-full px-6 py-5 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all font-bold text-accent placeholder:text-gray-300"
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="exemplo@empresa.com.br"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#5a6fa6] focus:ring-2 focus:ring-[#5a6fa6]/20 outline-none text-sm text-gray-900 placeholder:text-gray-400 transition-colors"
                   />
                 </div>
-                <div className="relative group">
-                  <label className="flex items-center gap-2 text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 transition-colors group-focus-within:text-primary">
-                    <ClipboardList size={12} /> Tipo de Serviço
+
+                <div>
+                  <label htmlFor="contact-servico" className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">
+                    Tipo de Atendimento
                   </label>
-                  <select 
-                    name="service" required value={formData.service} onChange={handleChange}
-                    className="w-full px-6 py-5 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all font-bold text-accent appearance-none cursor-pointer"
+                  <select
+                    id="contact-servico"
+                    name="servico"
+                    value={formData.servico}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#5a6fa6] focus:ring-2 focus:ring-[#5a6fa6]/20 outline-none text-sm text-gray-900 transition-colors"
                   >
-                    <option value="">Selecione a Categoria</option>
-                    <option value="recuperacao">Recuperação de Veículo/Carga</option>
-                    <option value="escolta">Escolta Armada Pesada</option>
-                    <option value="investigacao">Investigação e Varredura</option>
-                    <option value="parceria">Parcerias Estratégicas</option>
+                    <option value="recuperacao">Recuperação de Veículo Roubado/Furtado</option>
+                    <option value="cargas">Pronta Resposta para Cargas & Frotas</option>
+                    <option value="escolta">Apoio com Escolta Homologada PF</option>
+                    <option value="varredura">Varredura de Sinal Anti-Jammer</option>
+                    <option value="parceria">Credenciamento de Parceiros</option>
                   </select>
                 </div>
               </div>
 
-              <div className="relative group">
-                <label className="flex items-center gap-2 text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 transition-colors group-focus-within:text-primary">
-                  <MessageSquare size={12} /> Descrição da Necessidade
+              <div>
+                <label htmlFor="contact-mensagem" className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">
+                  Mensagem ou Detalhes da Ocorrência *
                 </label>
-                <textarea 
-                  name="message" required rows={4} value={formData.message} onChange={handleChange}
-                  placeholder="Detalhe brevemente a ocorrência ou solicitação..."
-                  className="w-full px-6 py-5 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all font-bold text-accent placeholder:text-gray-300 resize-none"
-                ></textarea>
+                <textarea
+                  id="contact-mensagem"
+                  name="mensagem"
+                  required
+                  rows={4}
+                  value={formData.mensagem}
+                  onChange={handleChange}
+                  placeholder="Informe o local aproximado, modelo do veículo ou necessidade operacional..."
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#5a6fa6] focus:ring-2 focus:ring-[#5a6fa6]/20 outline-none text-sm text-gray-900 placeholder:text-gray-400 resize-none transition-colors"
+                />
               </div>
 
-              <button 
+              <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`
-                  w-full py-6 rounded-[2rem] font-black text-xl flex items-center justify-center gap-4 transition-all duration-500 shadow-2xl relative overflow-hidden group
-                  ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary text-white hover:bg-accent hover:-translate-y-1 active:scale-95'}
-                `}
+                className="w-full min-h-[52px] py-3.5 px-6 rounded-xl bg-[#5a6fa6] hover:bg-[#4b5d8d] text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg transition-colors disabled:opacity-50"
               >
-                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 skew-x-12"></div>
                 {isSubmitting ? (
-                  <div className="flex items-center gap-3">
-                    <div className="w-5 h-5 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
-                    AUTENTICANDO...
-                  </div>
+                  <span>Enviando dados...</span>
                 ) : (
-                  <>ACIONAR PROTOCOLO <Send size={24} className="group-hover:translate-x-1 transition-transform" /></>
+                  <>
+                    <span>Enviar Mensagem para a Central</span>
+                    <Send className="w-4 h-4" />
+                  </>
                 )}
               </button>
             </form>
@@ -182,3 +216,5 @@ export const ContactForm: React.FC = () => {
     </div>
   );
 };
+
+export default ContactForm;

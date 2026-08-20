@@ -1,56 +1,121 @@
-
 import React from 'react';
+import { Seo } from '../src/components/Seo';
+import {
+  generateLocalBusinessJsonLd,
+  generateBreadcrumbJsonLd,
+  generateFaqJsonLd,
+} from '../src/lib/schema';
 import { ContactForm } from '../components/ContactForm';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { TacticalQA } from '../components/TacticalQA';
+import { COMPANY } from '../src/data/company';
+import { FAQ_DATA } from '../src/data/faq';
+import { PhoneCall, Mail, MapPin, Clock, ShieldCheck, Building2 } from 'lucide-react';
+import Container from '../src/components/ui/Container';
+import Section from '../src/components/ui/Section';
 
 export const ContactPage: React.FC = () => {
+  const localBusinessSchema = generateLocalBusinessJsonLd();
+  const breadcrumbSchema = generateBreadcrumbJsonLd([
+    { name: 'Início', url: 'https://impactorecuperacoes.com.br/' },
+    { name: 'Contato', url: 'https://impactorecuperacoes.com.br/contato' },
+  ]);
+  const faqSchema = generateFaqJsonLd(
+    FAQ_DATA.map((f) => ({ pergunta: f.pergunta, resposta: f.resposta }))
+  );
+
   return (
-    <div className="bg-white">
-      <section className="pt-32 pb-20 bg-accent text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-8xl font-black uppercase italic leading-none tracking-tighter mb-6">
-            Suporte <span className="text-primary">Estratégico</span>
-          </h1>
-          <p className="text-xl text-gray-400">Atendimento imediato 24h para emergências e orçamentos corporativos.</p>
-        </div>
-      </section>
+    <>
+      <Seo
+        title="Contato e Plantão 24h | Impacto Recuperações"
+        description="Fale com a central 24 horas da Impacto Recuperações. Telefone (11) 96502-0011, e-mail contato@impactorecuperacoes.com.br. Sede em Indaiatuba/SP."
+        canonicalUrl="https://impactorecuperacoes.com.br/contato"
+        structuredData={[localBusinessSchema, breadcrumbSchema, faqSchema]}
+      />
 
-      <div className="container mx-auto px-4 -mt-16 relative z-10 pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-12">
-          {[
-            { icon: <Phone />, label: 'Emergência 24h', val: '(11) 96502-0011', color: 'bg-red-600' },
-            { icon: <Mail />, label: 'E-mail Comercial', val: 'contato@impacto.com.br', color: 'bg-primary' },
-            { icon: <MapPin />, label: 'Base Operacional', val: 'São Paulo - SP', color: 'bg-accent' },
-            { icon: <Clock />, label: 'Disponibilidade', val: 'Full Time 24/7', color: 'bg-green-600' },
-          ].map((item, i) => (
-            <div key={i} className="bg-white p-8 rounded-[2rem] shadow-2xl border border-gray-100 flex flex-col items-center text-center">
-               <div className={`w-14 h-14 ${item.color} text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>{item.icon}</div>
-               <h3 className="text-[10px] font-black uppercase text-gray-400 tracking-widest mb-1">{item.label}</h3>
-               <p className="text-lg font-black text-accent">{item.val}</p>
+      <div className="bg-white">
+        {/* Header */}
+        <section className="pt-32 pb-16 bg-[#171922] text-white">
+          <Container>
+            <div className="max-w-3xl mx-auto text-center">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#8ba2d4] bg-white/10 px-3 py-1 rounded-full border border-white/15">
+                Canais de Atendimento Oficial
+              </span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mt-4 mb-4 tracking-tight">
+                Central de Atendimento 24 Horas
+              </h1>
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+                Prontidão para acionamentos de emergência, orçamentos para frotas e dúvidas técnicas operacionais.
+              </p>
             </div>
-          ))}
-        </div>
+          </Container>
+        </section>
 
-        <ContactForm />
-      </div>
-
-      <section className="py-24 bg-gray-50 border-t border-gray-100">
-        <div className="container mx-auto px-4 text-center">
-           <h2 className="text-3xl font-black text-accent mb-12 uppercase italic">PERGUNTAS FREQUENTES</h2>
-           <div className="max-w-3xl mx-auto space-y-6 text-left">
-              {[
-                { q: "Qual o tempo médio de atendimento?", a: "Nas capitais, nosso tempo de resposta é inferior a 30 minutos via acionamento central." },
-                { q: "Vocês atendem veículos particulares?", a: "Sim, atendemos tanto frotas corporativas de logística quanto veículos de passeio e motos." },
-                { q: "O serviço de escolta é armado?", a: "Sim, possuímos equipes autorizadas para escolta armada e velada em conformidade com a legislação." }
-              ].map((faq, i) => (
-                <div key={i} className="bg-white p-8 rounded-3xl border border-gray-200">
-                  <h4 className="font-black text-primary uppercase text-sm mb-2">{faq.q}</h4>
-                  <p className="text-gray-600 font-medium">{faq.a}</p>
+        {/* Cards de Contato Rápido */}
+        <Section className="bg-gray-50 -mt-8 relative z-10 pt-0">
+          <Container>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-3">
+                  <PhoneCall className="w-6 h-6" />
                 </div>
-              ))}
-           </div>
-        </div>
-      </section>
-    </div>
+                <span className="text-xs font-mono uppercase text-gray-500 font-bold">Plantão 24 Horas</span>
+                <a
+                  href={`tel:${COMPANY.telefone.e164}`}
+                  className="text-base font-bold text-gray-900 hover:text-[#5a6fa6] mt-1 transition-colors"
+                >
+                  {COMPANY.telefone.exibicao}
+                </a>
+              </div>
+
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <span className="text-xs font-mono uppercase text-gray-500 font-bold">WhatsApp Direto</span>
+                <a
+                  href={`https://wa.me/${COMPANY.whatsapp?.internacional || '5511965020011'}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-base font-bold text-gray-900 hover:text-emerald-600 mt-1 transition-colors"
+                >
+                  {COMPANY.telefone.exibicao}
+                </a>
+              </div>
+
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-xl bg-blue-50 text-[#5a6fa6] flex items-center justify-center mb-3">
+                  <Mail className="w-6 h-6" />
+                </div>
+                <span className="text-xs font-mono uppercase text-gray-500 font-bold">E-mail Corporativo</span>
+                <a
+                  href={`mailto:${COMPANY.email}`}
+                  className="text-sm font-bold text-gray-900 hover:text-[#5a6fa6] mt-1 transition-colors break-all"
+                >
+                  {COMPANY.email}
+                </a>
+              </div>
+
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-xl bg-gray-100 text-gray-800 flex items-center justify-center mb-3">
+                  <Building2 className="w-6 h-6" />
+                </div>
+                <span className="text-xs font-mono uppercase text-gray-500 font-bold">Sede Própria</span>
+                <p className="text-xs font-bold text-gray-900 mt-1">
+                  {COMPANY.endereco.resumo}
+                </p>
+              </div>
+            </div>
+
+            {/* Formulário Principal */}
+            <ContactForm />
+          </Container>
+        </Section>
+
+        {/* FAQ Estruturado */}
+        <TacticalQA />
+      </div>
+    </>
   );
 };
+
+export default ContactPage;
