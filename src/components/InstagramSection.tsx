@@ -88,7 +88,6 @@ export const InstagramSection: React.FC<InstagramSectionProps> = ({ className = 
                 className="w-full aspect-[9/11] md:aspect-[4/5] rounded-2xl border-0 bg-gray-50"
                 title="Feed Oficial da Impacto Recuperações no Instagram"
                 loading="lazy"
-                allowTransparency
               />
             ) : (
               <div className="w-full aspect-[9/11] md:aspect-[4/5] rounded-2xl bg-gray-100 animate-pulse flex items-center justify-center">
