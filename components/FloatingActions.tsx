@@ -277,18 +277,18 @@ export const FloatingActions: React.FC = () => {
           <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:-translate-y-0.5" />
         </button>
 
-        {/* Botão "Ligar Agora" (Gradiente chamativo, animação de pulso/bounce) */}
+        {/* Botão "Ligar Agora" (Discreto e elegante no mobile, expandido no desktop) */}
         <a
           id="btn-call-now"
           href={`tel:${COMPANY.telefone.e164}`}
-          className="pointer-events-auto min-h-[46px] px-4 py-2.5 sm:px-5 sm:py-3 bg-gradient-to-r from-red-600 via-rose-500 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white rounded-full shadow-[0_8px_20px_rgba(225,29,72,0.4)] hover:shadow-[0_8px_25px_rgba(225,29,72,0.6)] hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2.5 border border-white/20 group"
+          className="pointer-events-auto min-h-[44px] sm:min-h-[46px] px-3.5 py-2 sm:px-5 sm:py-3 bg-gradient-to-r from-red-600 via-rose-500 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white rounded-full shadow-[0_4px_16px_rgba(225,29,72,0.35)] hover:shadow-[0_6px_22px_rgba(225,29,72,0.5)] hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 sm:gap-2.5 border border-white/20 group"
           aria-label={`Ligar Agora para ${COMPANY.telefone.exibicao}`}
         >
-          <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-            <PhoneCall className="w-4 h-4 text-white animate-bounce" />
+          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+            <PhoneCall className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
           </div>
           <div className="flex flex-col text-left">
-            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-red-100 leading-none">
+            <span className="hidden sm:block text-[10px] font-mono font-bold uppercase tracking-wider text-red-100 leading-none">
               Plantão 24h
             </span>
             <span className="text-xs sm:text-sm font-black tracking-tight leading-tight">
@@ -303,23 +303,23 @@ export const FloatingActions: React.FC = () => {
           href={COMPANY.telefone.whatsappUrl || COMPANY.whatsapp?.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="pointer-events-auto relative min-h-[50px] px-4 py-3 sm:px-5 sm:py-3.5 bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:to-green-500 text-white rounded-full shadow-[0_10px_30px_rgba(37,211,102,0.45)] hover:shadow-[0_10px_35px_rgba(37,211,102,0.7)] hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-3 border border-white/25 group"
+          className="pointer-events-auto relative min-h-[48px] sm:min-h-[50px] px-4 py-2.5 sm:px-5 sm:py-3.5 bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:to-green-500 text-white rounded-full shadow-[0_8px_24px_rgba(37,211,102,0.4)] hover:shadow-[0_10px_30px_rgba(37,211,102,0.6)] hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2.5 sm:gap-3 border border-white/25 group"
           aria-label="Conversar com a Central 24h via WhatsApp"
         >
           {/* Indicador de Luz Verde Piscando ("Online Agora") */}
-          <span className="absolute -top-1 -right-1 flex h-4 w-4">
+          <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5 sm:h-4 sm:w-4">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-90" />
-            <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-white shadow-sm" />
+            <span className="relative inline-flex rounded-full h-3.5 w-3.5 sm:h-4 sm:w-4 bg-emerald-500 border-2 border-white shadow-sm" />
           </span>
 
-          <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-            <MessageCircle className="w-5 h-5 text-white transition-transform group-hover:scale-110 group-hover:rotate-6" />
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white transition-transform group-hover:scale-110" />
           </div>
 
           <div className="flex flex-col text-left">
-            <div className="flex items-center gap-1.5 leading-none">
+            <div className="flex items-center gap-1 leading-none">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-100">
+              <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-100">
                 Online Agora
               </span>
             </div>
