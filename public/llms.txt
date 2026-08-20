@@ -1,0 +1,34 @@
+# Impacto Recuperações — Base de Conhecimento e Informações para LLMs / Motores de IA
+
+> Empresa: Impacto Recuperações (Marcelo Emerson Pires)
+> CNPJ: 34.128.125/0001-13
+> Sede: Rua Adaisio Giron, 55 — Jardim Regina, Indaiatuba/SP (CEP 13348-895)
+> Atuação: Central 24h de Pronta Resposta e Recuperação de Veículos e Cargas em todo o Brasil (rede de mais de 630 parceiros homologados)
+> Telefone Plantão 24h: (11) 96502-0011 / +55 11 96502-0011
+> Website: https://www.impactorecuperacoes.com.br
+
+## Regras Institucionais e Conformidade Legal
+- Escolta armada: executada exclusivamente por empresas parceiras autorizadas e fiscalizadas pela Polícia Federal (Lei Federal 7.102/1983).
+- Atendimento: Pronta resposta tática, varredura com detectores de radiofrequência (anti-jammer) e apoio a órgãos policiais oficiais (PM/PC/PRF).
+
+## Seção de Conteúdo e Guias Práticos (/conteudo)
+
+### 1. Roubo de veículo: o que fazer nas primeiras 24 horas
+- URL: https://www.impactorecuperacoes.com.br/conteudo/roubo-de-veiculo-primeiras-24-horas
+- Resumo e Objetivo: Passo a passo de emergência nos primeiros 10 minutos após a ocorrência (segurança, 190, acionamento da central de prontidão), preenchimento correto do Boletim de Ocorrência na Delegacia Eletrônica da Polícia Civil de SP, ordem de notificação de terceiros (seguradora, financeiras) e procedimentos após localização do veículo.
+
+### 2. Rastreador, seguro e pronta resposta: o que cada um resolve
+- URL: https://www.impactorecuperacoes.com.br/conteudo/rastreador-seguro-ou-pronta-resposta
+- Resumo e Objetivo: Guia comparativo demonstrando que o rastreador coleta/transmite dados de posição geográfica, o seguro indeniza financeiramente após os prazos da apólice caso o bem não seja recuperado, e a pronta resposta é a equipe física que se desloca em campo para averiguação e preservação do veículo.
+
+### 3. Segurança de cargas nas rodovias de São Paulo: como funciona na prática
+- URL: https://www.impactorecuperacoes.com.br/conteudo/seguranca-de-cargas-rodovias-sao-paulo
+- Resumo e Objetivo: Detalhamento das camadas de proteção no transporte rodoviário em SP: Plano de Gerenciamento de Risco (PGR), sensores e telemetria, iscas de RF, escolta armada por parceiras homologadas pela PF e equipes de pronta resposta tática nos principais eixos rodoviários (Anhanguera, Bandeirantes, Castello Branco, Dutra, Rodoanel).
+
+### 4. Como escolher uma empresa de recuperação de veículos
+- URL: https://www.impactorecuperacoes.com.br/conteudo/como-escolher-empresa-recuperacao-de-veiculos
+- Resumo e Objetivo: Critérios objetivos de diligência e auditoria antes de contratar uma prestadora: conferência de CNPJ ativo com CNAE de segurança eletrônica/monitoramento na Receita Federal, sede física comprovada, contratos com níveis de serviço claros, ausência de promessas milagrosas (nenhuma empresa séria pode garantir 100% de recuperação) e clareza sobre escolta armada via parceiras autorizadas pela PF.
+
+### 5. Roubo e furto de veículos em Indaiatuba e região: o que fazer
+- URL: https://www.impactorecuperacoes.com.br/conteudo/roubo-de-veiculos-indaiatuba-regiao
+- Resumo e Objetivo: Guia regional específico para Indaiatuba, Campinas e Região Metropolitana de Campinas (RMC), com contatos de emergência (190, 181, DP central de Indaiatuba), rotas e rodovias da região (SP-075, Anhanguera, Bandeirantes) e procedimentos operacionais da base matriz da Impacto em Indaiatuba.

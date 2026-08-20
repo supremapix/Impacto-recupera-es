@@ -69,6 +69,7 @@ export const Header: React.FC = () => {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Serviços', href: '/servicos' },
+    { name: 'Conteúdo', href: '/conteudo' },
     { name: 'Depoimentos', href: '/depoimentos' },
     { name: 'Abrangência', href: '/abrangencia' },
     { name: 'Contato', href: '/contato' },
@@ -118,22 +119,25 @@ export const Header: React.FC = () => {
 
           {/* DESKTOP NAV (Breakpoint xl: 1280px) */}
           <nav className="hidden xl:flex items-center gap-6 2xl:gap-8" aria-label="Navegação Principal">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                className={`font-bold text-[13px] uppercase tracking-wider transition-colors relative py-1.5 ${
-                  location.pathname === link.href
-                    ? 'text-[#8ba2d4] font-extrabold'
-                    : 'text-slate-200 hover:text-white'
-                }`}
-              >
-                {link.name}
-                {location.pathname === link.href && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#8ba2d4] rounded-full" />
-                )}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isCurrent = link.href === '/' ? location.pathname === '/' : location.pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className={`font-bold text-[13px] uppercase tracking-wider transition-colors relative py-1.5 ${
+                    isCurrent
+                      ? 'text-[#8ba2d4] font-extrabold'
+                      : 'text-slate-200 hover:text-white'
+                  }`}
+                >
+                  {link.name}
+                  {isCurrent && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#8ba2d4] rounded-full" />
+                  )}
+                </Link>
+              );
+            })}
 
             {/* CTA TELEFONE DESKTOP */}
             <a
@@ -218,7 +222,7 @@ export const Header: React.FC = () => {
           {/* Lista de Navegação Principal */}
           <nav className="flex flex-col space-y-2">
             {navLinks.map((link) => {
-              const isActive = location.pathname === link.href;
+              const isActive = link.href === '/' ? location.pathname === '/' : location.pathname.startsWith(link.href);
               return (
                 <Link
                   key={link.name}

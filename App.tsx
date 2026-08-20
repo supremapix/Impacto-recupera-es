@@ -14,6 +14,8 @@ import { TestimonialsPage } from './pages/TestimonialsPage';
 import { CoveragePage } from './pages/CoveragePage';
 import { ContactPage } from './pages/ContactPage';
 import { CityLocalSeoPage } from './pages/CityLocalSeoPage';
+import { ConteudoHubPage } from './pages/ConteudoHubPage';
+import { ArtigoIndividualPage } from './pages/ArtigoIndividualPage';
 
 /**
  * Componente de Fallback Inteligente para Rotas Catch-All
@@ -68,6 +70,8 @@ export const App: React.FC = () => {
           <Route path="/servicos" element={<ServicesPage />} />
           <Route path="/depoimentos" element={<TestimonialsPage />} />
           <Route path="/abrangencia" element={<CoveragePage />} />
+          <Route path="/conteudo" element={<ConteudoHubPage />} />
+          <Route path="/conteudo/:slug" element={<ArtigoIndividualPage />} />
           <Route path="/contato" element={<ContactPage />} />
           <Route path="/servicos-em/:city" element={<CityLocalSeoPage />} />
           <Route path="*" element={<FallbackOrCityRoute />} />

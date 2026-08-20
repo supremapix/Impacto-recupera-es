@@ -274,6 +274,81 @@ export const CityLocalSeoPage: React.FC<CityLocalSeoPageProps> = ({ citySlugOver
       {/* Escolta Armada Homologada (com Disclaimer Legal) */}
       <CargoEscortSection />
 
+      {/* Seção Leia Também: Guias Oficiais de Procedimentos */}
+      <Section className="bg-slate-900 text-white">
+        <Container>
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+              <div>
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#8ba2d4] bg-[#5a6fa6]/20 px-3 py-1 rounded-full">
+                  Base de Conhecimento & Emergência
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-white mt-2">
+                  Guias de Procedimento e Segurança Recomendados
+                </h2>
+              </div>
+              <Link
+                to="/conteudo"
+                className="text-xs sm:text-sm font-bold text-[#8ba2d4] hover:text-white flex items-center gap-1.5 min-h-[44px] shrink-0"
+              >
+                <span>Ver todos os guias</span>
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Artigo 1 */}
+              <Link
+                to="/conteudo/roubo-de-veiculo-primeiras-24-horas"
+                className="p-6 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-[#5a6fa6] transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  <span className="text-xs font-mono font-bold text-red-400 uppercase tracking-wider block mb-2">
+                    Emergência
+                  </span>
+                  <h3 className="font-bold text-base sm:text-lg text-white group-hover:text-[#8ba2d4] transition-colors mb-2 leading-snug">
+                    Roubo de veículo: o que fazer nas primeiras 24 horas
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed">
+                    Passo a passo imediato com 190, registro de boletim de ocorrência eletrônico e acionamento tático.
+                  </p>
+                </div>
+                <div className="mt-4 pt-4 border-t border-slate-700/50 flex items-center justify-between text-xs text-slate-400 font-mono">
+                  <span>8 min de leitura</span>
+                  <span className="text-[#8ba2d4] font-bold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                    Ler guia <ChevronRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </Link>
+
+              {/* Artigo 5 */}
+              <Link
+                to="/conteudo/roubo-de-veiculos-indaiatuba-regiao"
+                className="p-6 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-[#5a6fa6] transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-wider block mb-2">
+                    Regional SP
+                  </span>
+                  <h3 className="font-bold text-base sm:text-lg text-white group-hover:text-[#8ba2d4] transition-colors mb-2 leading-snug">
+                    Roubo e furto de veículos em Indaiatuba e região: o que fazer
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed">
+                    Canais oficiais de emergência, rodovias da região e mobilização a partir da base operacional.
+                  </p>
+                </div>
+                <div className="mt-4 pt-4 border-t border-slate-700/50 flex items-center justify-between text-xs text-slate-400 font-mono">
+                  <span>6 min de leitura</span>
+                  <span className="text-[#8ba2d4] font-bold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                    Ler guia <ChevronRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
       {/* FAQs da Cidade */}
       <Section className="bg-white">
         <Container className="max-w-4xl">

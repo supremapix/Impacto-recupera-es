@@ -263,6 +263,7 @@ export function getServiceSchema(name: string, description: string) {
 }
 
 // Aliases para conveniência e compatibilidade
+export const generateOrganizationJsonLd = getOrganizationSchema;
 export const generateLocalBusinessJsonLd = getOrganizationSchema;
 export const generateBreadcrumbJsonLd = getBreadcrumbSchema;
 export const generateFaqJsonLd = getFaqSchema;
