@@ -46,8 +46,33 @@ export function SupremaCredit() {
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#1a1c23] text-white pt-16 md:pt-20 pb-12 border-t border-gray-800">
-      <Container>
+    <footer className="relative bg-[#0d1017] text-white pt-16 md:pt-20 pb-12 border-t border-slate-800/80 overflow-hidden">
+      {/* VÍDEO CINEMATOGRÁFICO DE FUNDO COM DESIGN SOFISTICADO */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden select-none pointer-events-none">
+        <video
+          src="https://img.supremasite.com.br/impacto.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover scale-[1.03] transform-gpu opacity-45"
+        />
+
+        {/* Camadas de Contraste e Transição para Máxima Legibilidade */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0d1017]/95 via-[#0d1017]/85 to-[#080a0f]/95 backdrop-blur-[1.5px]" />
+        
+        {/* Trama Tática */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: 'radial-gradient(#8ba2d4 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+          }}
+        />
+      </div>
+
+      <Container className="relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-14">
           {/* Coluna 1: Marca e Posicionamento */}
           <div className="lg:col-span-1">

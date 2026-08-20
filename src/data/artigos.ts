@@ -20,6 +20,7 @@ export interface Artigo {
   atualizadoEm: string;      // ISO
   destaque: boolean;
   imagemCard?: string;
+  imagemAlt?: string;
   corpo: BlocoConteudo[];
   faq: { pergunta: string; resposta: string }[];
   relacionados: string[];    // slugs
@@ -42,6 +43,8 @@ export const ARTIGOS: Artigo[] = [
     publicadoEm: '2026-03-01T08:00:00.000Z',
     atualizadoEm: '2026-03-15T10:00:00.000Z',
     destaque: true,
+    imagemCard: 'https://img.supremasite.com.br/highway_security_sunset.webp',
+    imagemAlt: 'Viaturas de pronta resposta em rodovia no pôr do sol - O que fazer em caso de roubo de veículo nas primeiras 24 horas',
     temAvisoLegal: true,
     relacionados: [
       'rastreador-seguro-ou-pronta-resposta',
@@ -338,6 +341,8 @@ export const ARTIGOS: Artigo[] = [
     publicadoEm: '2026-03-02T08:00:00.000Z',
     atualizadoEm: '2026-03-15T10:00:00.000Z',
     destaque: false,
+    imagemCard: 'https://img.supremasite.com.br/impacto_recuperacoes_triptych.webp',
+    imagemAlt: 'Diferenças entre rastreador, seguro auto e pronta resposta tática 24h',
     temAvisoLegal: false,
     relacionados: [
       'roubo-de-veiculo-primeiras-24-horas',
@@ -559,6 +564,8 @@ export const ARTIGOS: Artigo[] = [
     publicadoEm: '2026-03-03T08:00:00.000Z',
     atualizadoEm: '2026-03-15T10:00:00.000Z',
     destaque: false,
+    imagemCard: 'https://img.supremasite.com.br/highway_hud_sunset.webp',
+    imagemAlt: 'Segurança e escolta homologada de transporte de cargas nas rodovias de São Paulo',
     temAvisoLegal: true,
     relacionados: [
       'como-escolher-empresa-recuperacao-de-veiculos',
@@ -773,6 +780,8 @@ export const ARTIGOS: Artigo[] = [
     publicadoEm: '2026-03-04T08:00:00.000Z',
     atualizadoEm: '2026-03-15T10:00:00.000Z',
     destaque: false,
+    imagemCard: 'https://img.supremasite.com.br/corporate_office_photoreal.webp',
+    imagemAlt: 'Critérios para contratação de empresa de recuperação de veículos e pronta resposta',
     temAvisoLegal: false,
     relacionados: [
       'roubo-de-veiculo-primeiras-24-horas',
@@ -995,6 +1004,8 @@ export const ARTIGOS: Artigo[] = [
     publicadoEm: '2026-03-05T08:00:00.000Z',
     atualizadoEm: '2026-03-15T10:00:00.000Z',
     destaque: false,
+    imagemCard: 'https://img.supremasite.com.br/tactical_suv_sunset.webp',
+    imagemAlt: 'Pronta resposta e recuperação veicular em Indaiatuba, Campinas e RMC',
     temAvisoLegal: true,
     relacionados: [
       'roubo-de-veiculo-primeiras-24-horas',

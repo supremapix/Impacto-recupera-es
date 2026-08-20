@@ -150,51 +150,51 @@ export const FloatingActions: React.FC = () => {
 
   return (
     <>
-      {/* 1. BOTÃO DE COMPARTILHAMENTO FLUTUANTE (CANTO INFERIOR ESQUERDO) */}
+      {/* 1. BOTÃO DE COMPARTILHAMENTO FLUTUANTE (CANTO INFERIOR ESQUERDO) - COMPACTO */}
       <div
         style={{ zIndex: Z_INDEX.socialBar }}
-        className="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-4 sm:left-6 flex flex-col items-start"
+        className="fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-3 sm:left-5 flex flex-col items-start"
         ref={shareMenuRef}
       >
-        {/* Menu / Popup de Compartilhamento com Efeito Vidro Fosco (backdrop-blur) */}
+        {/* Menu / Popup de Compartilhamento com Efeito Vidro Fosco */}
         {showShareMenu && (
           <div
             id="floating-share-menu"
-            className="mb-3 w-72 sm:w-80 bg-slate-950/90 backdrop-blur-xl border border-slate-700/60 rounded-3xl p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] text-white animate-fadeInUp origin-bottom-left transition-all duration-300"
+            className="mb-2 w-64 sm:w-72 bg-slate-950/95 backdrop-blur-xl border border-slate-700/60 rounded-2xl p-3.5 sm:p-4 shadow-[0_15px_35px_rgba(0,0,0,0.6)] text-white animate-fadeInUp origin-bottom-left transition-all duration-200"
             role="dialog"
             aria-label="Opções de compartilhamento"
           >
-            <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-800/80">
+            <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-800/80">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-xl bg-[#5a6fa6]/30 border border-[#5a6fa6]/50 flex items-center justify-center text-[#8ba2d4]">
-                  <Share2 className="w-3.5 h-3.5" />
+                <div className="w-6 h-6 rounded-lg bg-[#5a6fa6]/30 border border-[#5a6fa6]/50 flex items-center justify-center text-[#8ba2d4]">
+                  <Share2 className="w-3 h-3" />
                 </div>
                 <div>
-                  <h4 className="font-black text-xs uppercase tracking-wider text-white">
-                    Compartilhar Página
+                  <h4 className="font-bold text-[11px] uppercase tracking-wider text-white">
+                    Compartilhar
                   </h4>
-                  <p className="text-[10px] text-slate-400 font-mono">Espalhe esta solução</p>
+                  <p className="text-[9px] text-slate-400 font-mono">Espalhe esta solução</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setShowShareMenu(false)}
-                className="w-7 h-7 rounded-full bg-white/5 hover:bg-white/15 text-slate-400 hover:text-white flex items-center justify-center transition-colors"
+                className="w-6 h-6 rounded-full bg-white/5 hover:bg-white/15 text-slate-400 hover:text-white flex items-center justify-center transition-colors"
                 aria-label="Fechar menu de compartilhamento"
               >
-                <X className="w-4 h-4" />
+                <X className="w-3.5 h-3.5" />
               </button>
             </div>
 
             {/* Grid dos Canais de Compartilhamento Direto */}
-            <div className="grid grid-cols-2 gap-2 mb-3">
+            <div className="grid grid-cols-2 gap-1.5 mb-2.5">
               {shareChannels.map((channel) => (
                 <a
                   key={channel.name}
                   href={channel.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm ${channel.bgClass}`}
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-bold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-sm ${channel.bgClass}`}
                   aria-label={`Compartilhar via ${channel.name}`}
                 >
                   <span className="shrink-0">{channel.icon}</span>
@@ -203,26 +203,26 @@ export const FloatingActions: React.FC = () => {
               ))}
             </div>
 
-            {/* Botão Copiar Link com Feedback Semântico */}
-            <div className="pt-2 border-t border-slate-800/80">
+            {/* Botão Copiar Link */}
+            <div className="pt-1.5 border-t border-slate-800/80">
               <button
                 type="button"
                 id="btn-copy-share-link"
                 onClick={handleCopyLink}
-                className={`w-full py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all duration-200 border ${
+                className={`w-full py-1.5 px-2.5 rounded-lg font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all duration-200 border ${
                   copied
-                    ? 'bg-emerald-600/90 border-emerald-400 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]'
+                    ? 'bg-emerald-600/90 border-emerald-400 text-white shadow-sm'
                     : 'bg-white/10 hover:bg-white/20 border-white/15 text-slate-200 hover:text-white'
                 }`}
               >
                 {copied ? (
                   <>
-                    <Check className="w-4 h-4 text-emerald-300" />
-                    <span className="font-bold">Link Copiado com Sucesso!</span>
+                    <Check className="w-3.5 h-3.5 text-emerald-300" />
+                    <span>Link Copiado!</span>
                   </>
                 ) : (
                   <>
-                    <Copy className="w-4 h-4 text-[#8ba2d4]" />
+                    <Copy className="w-3.5 h-3.5 text-[#8ba2d4]" />
                     <span>Copiar Link da Página</span>
                   </>
                 )}
@@ -231,99 +231,82 @@ export const FloatingActions: React.FC = () => {
           </div>
         )}
 
-        {/* Botão Gatilho de Compartilhamento com Efeito Pulso/Brilho */}
+        {/* Botão Gatilho de Compartilhamento Compacto */}
         <div className="relative group">
-          {/* Efeito Glow / Pulso no fundo */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-[#5a6fa6] via-blue-500 to-indigo-600 rounded-full blur opacity-65 group-hover:opacity-100 transition duration-500 animate-pulse" />
-
           <button
             type="button"
             id="floating-share-btn"
             onClick={() => setShowShareMenu(!showShareMenu)}
             aria-expanded={showShareMenu}
             aria-controls="floating-share-menu"
-            aria-label="Abrir opções de compartilhamento nas redes sociais"
-            className="relative min-w-[48px] min-h-[48px] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-950 text-white border border-white/20 flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all duration-200"
+            aria-label="Abrir opções de compartilhamento"
+            className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-950/90 backdrop-blur-md text-white border border-white/20 flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 hover:border-[#5a6fa6]"
           >
-            <Share2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#8ba2d4] group-hover:text-white transition-colors" />
+            <Share2 className="w-4 h-4 text-[#8ba2d4] group-hover:text-white transition-colors" />
 
-            {/* Badge Indicador Sutil */}
-            <span className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5">
+            {/* Badge Indicador Minimalista */}
+            <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8ba2d4] opacity-75" />
-              <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-[#5a6fa6] border border-white" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#5a6fa6] border border-slate-950" />
             </span>
           </button>
         </div>
       </div>
 
-      {/* 2. BOTÕES DE CONTATO RÁPIDO E VOLTAR AO TOPO (CANTO INFERIOR DIREITO) */}
+      {/* 2. BOTÕES DE CONTATO RÁPIDO E VOLTAR AO TOPO (CANTO INFERIOR DIREITO) - COMPACTOS */}
       <aside
         aria-label="Atendimento rápido e navegação"
         style={{ zIndex: Z_INDEX.fabs }}
-        className="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-4 sm:right-6 flex flex-col items-end gap-2.5 sm:gap-3 pointer-events-none"
+        className="fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3 sm:right-5 flex flex-col items-end gap-1.5 sm:gap-2 pointer-events-none"
       >
-        {/* Botão Voltar ao Topo (Aparece suavemente após 300px) */}
+        {/* Botão Voltar ao Topo (Discreto) */}
         <button
           type="button"
           id="btn-back-to-top"
           onClick={scrollToTop}
-          className={`pointer-events-auto min-w-[42px] min-h-[42px] w-10 h-10 sm:w-11 sm:h-11 bg-slate-900/90 backdrop-blur-md text-white rounded-full shadow-lg border border-white/15 hover:bg-[#5a6fa6] transition-all duration-300 flex items-center justify-center group ${
+          className={`pointer-events-auto w-8 h-8 sm:w-9 sm:h-9 bg-slate-900/90 backdrop-blur-md text-white rounded-full shadow-md border border-white/15 hover:bg-[#5a6fa6] transition-all duration-300 flex items-center justify-center group ${
             showBackToTop
               ? 'opacity-100 translate-y-0 scale-100'
-              : 'opacity-0 translate-y-3 scale-90 pointer-events-none'
+              : 'opacity-0 translate-y-2 scale-90 pointer-events-none'
           }`}
-          aria-label="Voltar suavemente ao topo da página"
+          aria-label="Voltar ao topo"
         >
-          <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:-translate-y-0.5" />
+          <ArrowUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:-translate-y-0.5" />
         </button>
 
-        {/* Botão "Ligar Agora" (Discreto e elegante no mobile, expandido no desktop) */}
+        {/* Botão "Ligar Agora" (Super discreto no mobile e compacto no desktop) */}
         <a
           id="btn-call-now"
           href={`tel:${COMPANY.telefone.e164}`}
-          className="pointer-events-auto min-h-[44px] sm:min-h-[46px] px-3.5 py-2 sm:px-5 sm:py-3 bg-gradient-to-r from-red-600 via-rose-500 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white rounded-full shadow-[0_4px_16px_rgba(225,29,72,0.35)] hover:shadow-[0_6px_22px_rgba(225,29,72,0.5)] hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 sm:gap-2.5 border border-white/20 group"
+          className="pointer-events-auto h-9 sm:h-10 px-2.5 sm:px-3.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white rounded-full shadow-md hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-1.5 sm:gap-2 border border-white/20 group"
           aria-label={`Ligar Agora para ${COMPANY.telefone.exibicao}`}
         >
-          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-            <PhoneCall className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
-          </div>
-          <div className="flex flex-col text-left">
-            <span className="hidden sm:block text-[10px] font-mono font-bold uppercase tracking-wider text-red-100 leading-none">
-              Plantão 24h
-            </span>
-            <span className="text-xs sm:text-sm font-black tracking-tight leading-tight">
-              Ligar Agora
-            </span>
-          </div>
+          <PhoneCall className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white shrink-0" />
+          <span className="text-[11px] sm:text-xs font-bold tracking-tight whitespace-nowrap">
+            <span className="hidden sm:inline">Ligar: </span>
+            <span>(11) 96502-0011</span>
+          </span>
         </a>
 
-        {/* Botão "WhatsApp 24h" (Gradiente verde, luz pulsante e indicador "Online Agora") */}
+        {/* Botão "WhatsApp 24h" (Pill Compacto e Elegante) */}
         <a
           id="btn-whatsapp-24h"
           href={COMPANY.telefone.whatsappUrl || COMPANY.whatsapp?.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="pointer-events-auto relative min-h-[48px] sm:min-h-[50px] px-4 py-2.5 sm:px-5 sm:py-3.5 bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:to-green-500 text-white rounded-full shadow-[0_8px_24px_rgba(37,211,102,0.4)] hover:shadow-[0_10px_30px_rgba(37,211,102,0.6)] hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2.5 sm:gap-3 border border-white/25 group"
+          className="pointer-events-auto relative h-9 sm:h-10 px-3 sm:px-4 bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:to-green-500 text-white rounded-full shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 border border-white/25 group"
           aria-label="Conversar com a Central 24h via WhatsApp"
         >
-          {/* Indicador de Luz Verde Piscando ("Online Agora") */}
-          <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5 sm:h-4 sm:w-4">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-90" />
-            <span className="relative inline-flex rounded-full h-3.5 w-3.5 sm:h-4 sm:w-4 bg-emerald-500 border-2 border-white shadow-sm" />
+          {/* Indicador de Luz Verde Minimalista */}
+          <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-90" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 border border-slate-900 shadow-sm" />
           </span>
 
-          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white transition-transform group-hover:scale-110" />
-          </div>
+          <MessageCircle className="w-4 h-4 text-white shrink-0 transition-transform group-hover:scale-110" />
 
-          <div className="flex flex-col text-left">
-            <div className="flex items-center gap-1 leading-none">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-100">
-                Online Agora
-              </span>
-            </div>
-            <span className="text-xs sm:text-sm font-black tracking-tight leading-tight mt-0.5">
+          <div className="flex items-center gap-1.5 whitespace-nowrap">
+            <span className="text-[11px] sm:text-xs font-black tracking-tight leading-none">
               WhatsApp 24h
             </span>
           </div>

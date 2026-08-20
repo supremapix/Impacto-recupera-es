@@ -7,6 +7,7 @@ import {
 } from '../src/lib/schema';
 import { FAQ_DATA } from '../src/data/faq';
 import { Hero } from '../components/Hero';
+import { HeroTaskLetreiro } from '../components/HeroTaskLetreiro';
 import { Carousel } from '../components/Carousel';
 import { CoverageMap } from '../components/CoverageMap';
 import { InstagramSection } from '../src/components/InstagramSection';
@@ -44,8 +45,11 @@ export const HomePage: React.FC = () => {
       />
 
       <div className="animate-page-enter">
-        {/* Hero Section Oficial */}
+        {/* Hero Section Oficial com Vídeo de Alta Visibilidade */}
         <Hero />
+
+        {/* Task de Comando e Letreiro Digital Interativo 24h */}
+        <HeroTaskLetreiro />
 
         {/* Carousel de Diferenciais */}
         <Carousel />

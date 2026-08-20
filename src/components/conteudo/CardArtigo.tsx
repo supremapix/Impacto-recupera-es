@@ -31,28 +31,52 @@ export const CardArtigo: React.FC<CardArtigoProps> = ({ artigo }) => {
   return (
     <article className="h-full flex flex-col justify-between rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-[#5a6fa6]/40 transition-all duration-300 overflow-hidden group">
       {/* Imagem / Card Gráfico de Identidade */}
-      <div className="relative w-full aspect-[16/9] bg-[#232323] overflow-hidden flex flex-col justify-between p-6 text-white border-b border-slate-100 select-none">
-        {/* // TODO: substituir por foto real da operação */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#5a6fa6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
-        
+      <Link
+        to={`/conteudo/${artigo.slug}`}
+        tabIndex={-1}
+        aria-hidden="true"
+        className="relative w-full aspect-[16/9] bg-[#1e293b] overflow-hidden flex flex-col justify-between p-6 text-white border-b border-slate-100 select-none block"
+      >
+        {artigo.imagemCard ? (
+          <>
+            <img
+              src={artigo.imagemCard}
+              alt={artigo.imagemAlt || artigo.titulo}
+              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+            />
+            {/* Gradiente para legibilidade dos badges e textos */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-900/20 group-hover:via-slate-950/30 transition-colors" />
+          </>
+        ) : (
+          <div
+            className="absolute inset-0 opacity-10 pointer-events-none"
+            style={{
+              backgroundImage: 'radial-gradient(#5a6fa6 1px, transparent 1px)',
+              backgroundSize: '24px 24px',
+            }}
+          />
+        )}
+
         <div className="flex items-center justify-between z-10">
-          <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/10 text-slate-200 border border-white/15 backdrop-blur-md">
+          <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/40 text-slate-200 border border-white/20 backdrop-blur-md">
             Guia Operacional
           </span>
-          <span className="text-[10px] font-mono text-slate-400">
+          <span className="text-[10px] font-mono text-slate-200 bg-black/30 px-2 py-0.5 rounded-md backdrop-blur-sm">
             Impacto · 24h
           </span>
         </div>
 
         <div className="z-10 mt-auto">
-          <span className="text-xs font-bold text-[#8ba2d4] font-mono uppercase tracking-wider block mb-1">
+          <span className="text-xs font-bold text-[#8ba2d4] font-mono uppercase tracking-wider block mb-1 drop-shadow-sm">
             {artigo.categoria}
           </span>
-          <p className="text-sm font-black text-white line-clamp-2 leading-snug group-hover:text-[#8ba2d4] transition-colors">
+          <p className="text-sm font-black text-white line-clamp-2 leading-snug group-hover:text-[#8ba2d4] transition-colors drop-shadow-md">
             {artigo.titulo}
           </p>
         </div>
-      </div>
+      </Link>
 
       {/* Conteúdo do Card */}
       <div className="p-6 flex-1 flex flex-col justify-between space-y-4">

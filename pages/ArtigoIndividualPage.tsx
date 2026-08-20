@@ -88,6 +88,7 @@ export const ArtigoIndividualPage: React.FC = () => {
     publisher: {
       '@id': 'https://www.impactorecuperacoes.com.br/#organization',
     },
+    ...(artigo.imagemCard ? { image: artigo.imagemCard } : {}),
     wordCount: artigo.tempoLeitura * 200,
   };
 
@@ -108,6 +109,7 @@ export const ArtigoIndividualPage: React.FC = () => {
         description={artigo.descricao}
         canonicalUrl={canonicalUrl}
         ogType="article"
+        ogImage={artigo.imagemCard}
         structuredData={structuredData}
       />
       <ArtigoLayout artigo={artigo} />

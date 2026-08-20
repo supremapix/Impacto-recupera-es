@@ -101,6 +101,28 @@ export const ArtigoLayout: React.FC<ArtigoLayoutProps> = ({ artigo }) => {
               {artigo.resumo}
             </p>
           </div>
+
+          {/* Imagem Destacada do Artigo */}
+          {artigo.imagemCard && (
+            <div className="mt-8 rounded-3xl overflow-hidden shadow-md border border-slate-200 bg-slate-900 relative aspect-[16/9] sm:aspect-[21/9]">
+              <img
+                src={artigo.imagemCard}
+                alt={artigo.imagemAlt || artigo.titulo}
+                className="w-full h-full object-cover"
+                loading="eager"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-4 right-4 sm:bottom-4 sm:left-6 sm:right-6 flex items-center justify-between text-xs text-white font-mono drop-shadow-md">
+                <span className="bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20">
+                  Impacto Recuperações · Operações 24h
+                </span>
+                <span className="bg-[#5a6fa6]/80 backdrop-blur-md text-white font-bold px-2.5 py-1 rounded-full">
+                  {artigo.categoria}
+                </span>
+              </div>
+            </div>
+          )}
         </header>
 
         {/* Layout de Conteúdo com Sumário Sticky (xl) e Corpo Principal */}
