@@ -56,20 +56,11 @@ export const Footer: React.FC = () => {
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover scale-[1.03] transform-gpu opacity-45"
+          className="absolute inset-0 w-full h-full object-cover scale-[1.01] transform-gpu opacity-40"
         />
 
         {/* Camadas de Contraste e Transição para Máxima Legibilidade */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0d1017]/95 via-[#0d1017]/85 to-[#080a0f]/95 backdrop-blur-[1.5px]" />
-        
-        {/* Trama Tática */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: 'radial-gradient(#8ba2d4 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0d14]/95 via-[#0a0d14]/90 to-[#07090e]/98 backdrop-blur-[1px]" />
       </div>
 
       <Container className="relative z-10">

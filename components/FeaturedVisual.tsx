@@ -7,25 +7,13 @@ import Container from '../src/components/ui/Container';
 
 export const FeaturedVisual: React.FC = () => {
   return (
-    <section className="py-16 sm:py-24 bg-[#0c1017] text-white relative overflow-hidden border-t border-slate-800/80">
-      {/* Background Tático Controlado */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none select-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#5a6fa6]/10 rounded-full blur-[140px]" />
-        <div 
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: 'radial-gradient(#5a6fa6 1px, transparent 1px)',
-            backgroundSize: '32px 32px'
-          }}
-        />
-      </div>
-
+    <section className="py-16 sm:py-24 bg-[#0a0d14] text-white relative overflow-hidden border-t border-slate-800/80">
       <Container>
         {/* Cabeçalho da Seção */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 relative z-10">
-          <div className="inline-flex items-center gap-2 bg-[#5a6fa6]/20 border border-[#5a6fa6]/30 px-3.5 py-1.5 rounded-full text-[#8ba2d4] text-xs font-semibold uppercase tracking-wider mb-3">
-            <Activity className="w-3.5 h-3.5 animate-pulse" />
-            <span>Infraestrutura Tática & Telemetria</span>
+          <div className="inline-flex items-center gap-2 bg-[#5a6fa6]/15 border border-[#5a6fa6]/25 px-3.5 py-1.5 rounded-full text-[#8ba2d4] text-xs font-semibold uppercase tracking-wider mb-3">
+            <Activity className="w-3.5 h-3.5" />
+            <span>Infraestrutura Operacional</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
             Centro de Monitoramento & Varredura RF

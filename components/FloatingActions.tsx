@@ -240,15 +240,9 @@ export const FloatingActions: React.FC = () => {
             aria-expanded={showShareMenu}
             aria-controls="floating-share-menu"
             aria-label="Abrir opções de compartilhamento"
-            className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-950/90 backdrop-blur-md text-white border border-white/20 flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 hover:border-[#5a6fa6]"
+            className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900/90 backdrop-blur-md text-slate-300 hover:text-white border border-slate-700/80 flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-all duration-200"
           >
-            <Share2 className="w-4 h-4 text-[#8ba2d4] group-hover:text-white transition-colors" />
-
-            {/* Badge Indicador Minimalista */}
-            <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8ba2d4] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#5a6fa6] border border-slate-950" />
-            </span>
+            <Share2 className="w-3.5 h-3.5 text-slate-300 group-hover:text-[#8ba2d4] transition-colors" />
           </button>
         </div>
       </div>
@@ -257,59 +251,50 @@ export const FloatingActions: React.FC = () => {
       <aside
         aria-label="Atendimento rápido e navegação"
         style={{ zIndex: Z_INDEX.fabs }}
-        className="fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3 sm:right-5 flex flex-col items-end gap-1.5 sm:gap-2 pointer-events-none"
+        className="fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3 sm:right-5 flex flex-col items-end gap-1.5 pointer-events-none"
       >
         {/* Botão Voltar ao Topo (Discreto) */}
         <button
           type="button"
           id="btn-back-to-top"
           onClick={scrollToTop}
-          className={`pointer-events-auto w-8 h-8 sm:w-9 sm:h-9 bg-slate-900/90 backdrop-blur-md text-white rounded-full shadow-md border border-white/15 hover:bg-[#5a6fa6] transition-all duration-300 flex items-center justify-center group ${
+          className={`pointer-events-auto w-8 h-8 sm:w-9 sm:h-9 bg-slate-900/90 backdrop-blur-md text-slate-300 hover:text-white rounded-full shadow-sm border border-slate-700/80 hover:bg-[#5a6fa6] transition-all duration-200 flex items-center justify-center group ${
             showBackToTop
               ? 'opacity-100 translate-y-0 scale-100'
               : 'opacity-0 translate-y-2 scale-90 pointer-events-none'
           }`}
           aria-label="Voltar ao topo"
         >
-          <ArrowUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:-translate-y-0.5" />
+          <ArrowUp className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5" />
         </button>
 
-        {/* Botão "Ligar Agora" (Super discreto no mobile e compacto no desktop) */}
+        {/* Botão "Ligar Agora" (Discreto e institucional) */}
         <a
           id="btn-call-now"
           href={`tel:${COMPANY.telefone.e164}`}
-          className="pointer-events-auto h-9 sm:h-10 px-2.5 sm:px-3.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white rounded-full shadow-md hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-1.5 sm:gap-2 border border-white/20 group"
-          aria-label={`Ligar Agora para ${COMPANY.telefone.exibicao}`}
+          className="pointer-events-auto h-8 sm:h-9 px-2.5 sm:px-3 bg-slate-900/95 hover:bg-slate-800 text-slate-200 hover:text-white rounded-full shadow-md border border-slate-700/80 hover:border-slate-600 transition-all duration-200 flex items-center gap-1.5 group"
+          aria-label={`Ligar para ${COMPANY.telefone.exibicao}`}
         >
-          <PhoneCall className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white shrink-0" />
-          <span className="text-[11px] sm:text-xs font-bold tracking-tight whitespace-nowrap">
-            <span className="hidden sm:inline">Ligar: </span>
+          <PhoneCall className="w-3.5 h-3.5 text-[#8ba2d4] shrink-0" />
+          <span className="text-[11px] sm:text-xs font-semibold tracking-tight whitespace-nowrap">
             <span>(11) 96502-0011</span>
           </span>
         </a>
 
-        {/* Botão "WhatsApp 24h" (Pill Compacto e Elegante) */}
+        {/* Botão "WhatsApp 24h" (Elegante, sem pings excessivos) */}
         <a
           id="btn-whatsapp-24h"
           href={COMPANY.telefone.whatsappUrl || COMPANY.whatsapp?.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="pointer-events-auto relative h-9 sm:h-10 px-3 sm:px-4 bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:to-green-500 text-white rounded-full shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 border border-white/25 group"
+          className="pointer-events-auto relative h-8 sm:h-9 px-3 sm:px-3.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-full shadow-md transition-all duration-200 flex items-center gap-1.5 border border-emerald-500/40 group"
           aria-label="Conversar com a Central 24h via WhatsApp"
         >
-          {/* Indicador de Luz Verde Minimalista */}
-          <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-90" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 border border-slate-900 shadow-sm" />
+          <span className="w-2 h-2 rounded-full bg-emerald-300 shrink-0" />
+          <MessageCircle className="w-3.5 h-3.5 text-white shrink-0" />
+          <span className="text-[11px] sm:text-xs font-bold tracking-tight whitespace-nowrap">
+            WhatsApp 24h
           </span>
-
-          <MessageCircle className="w-4 h-4 text-white shrink-0 transition-transform group-hover:scale-110" />
-
-          <div className="flex items-center gap-1.5 whitespace-nowrap">
-            <span className="text-[11px] sm:text-xs font-black tracking-tight leading-none">
-              WhatsApp 24h
-            </span>
-          </div>
         </a>
       </aside>
     </>
