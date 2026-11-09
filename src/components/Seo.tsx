@@ -6,10 +6,12 @@ interface SeoProps {
   title: string;
   description: string;
   canonicalPath?: string;
+  canonicalUrl?: string;
   ogType?: string;
   ogImage?: string;
   noindex?: boolean;
   schemas?: (object | null | undefined)[];
+  structuredData?: (object | null | undefined)[];
 }
 
 /**
@@ -20,11 +22,13 @@ interface SeoProps {
 export const Seo: React.FC<SeoProps> = ({
   title,
   description,
-  canonicalPath = '/',
+  canonicalPath,
+  canonicalUrl: declaredCanonicalUrl,
   ogType = 'website',
   ogImage = `${COMPANY.dominio}/favicon.svg`,
   noindex = false,
   schemas = [],
+  structuredData = [],
 }) => {
   useEffect(() => {
     // 1. Title
@@ -46,7 +50,9 @@ export const Seo: React.FC<SeoProps> = ({
     setMeta('name', 'robots', noindex ? 'noindex, follow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
 
     // 3. Canonical URL
-    const cleanPath = canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`;
+    // Accept the URL prop used by page components, but keep the verified site origin.
+    const routePath = canonicalPath ?? (declaredCanonicalUrl ? new URL(declaredCanonicalUrl, COMPANY.dominio).pathname : '/');
+    const cleanPath = routePath.startsWith('/') ? routePath : `/${routePath}`;
     const canonicalUrl = cleanPath === '/' ? `${COMPANY.dominio}/` : `${COMPANY.dominio}${cleanPath.replace(/\/$/, '')}`;
     let canonicalLink = document.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {
@@ -76,6 +82,7 @@ export const Seo: React.FC<SeoProps> = ({
       getOrganizationSchema(),
       getWebSiteSchema(),
       ...schemas.filter(Boolean),
+      ...structuredData.filter(Boolean),
     ].flat();
 
     const scriptId = 'json-ld-seo-data';
@@ -91,7 +98,7 @@ export const Seo: React.FC<SeoProps> = ({
     return () => {
       // Cleanup on unmount if needed
     };
-  }, [title, description, canonicalPath, ogType, ogImage, noindex, schemas]);
+  }, [title, description, canonicalPath, declaredCanonicalUrl, ogType, ogImage, noindex, schemas, structuredData]);
 
   return null;
 };
