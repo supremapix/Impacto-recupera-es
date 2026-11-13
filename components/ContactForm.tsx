@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Send, PhoneCall, ShieldCheck, Mail, Building, ClipboardList, MessageSquare, CheckCircle2 } from 'lucide-react';
 import { COMPANY } from '../src/data/company';
+import { prepareContactMessage } from '../src/lib/contactMessage';
 
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -11,17 +12,13 @@ export const ContactForm: React.FC = () => {
     servico: 'recuperacao',
     mensagem: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [preparedMessage, setPreparedMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-      setFormData({ nome: '', telefone: '', email: '', empresa: '', servico: 'recuperacao', mensagem: '' });
-    }, 1200);
+    setPreparedMessage(prepareContactMessage(formData));
+    setSubmitted(true);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -95,16 +92,20 @@ export const ContactForm: React.FC = () => {
               <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
-              <h4 className="text-2xl font-black text-gray-900 mb-2">Mensagem Recebida com Sucesso</h4>
+              <h4 className="text-2xl font-black text-gray-900 mb-2">Revise sua mensagem antes de abrir o WhatsApp</h4>
               <p className="text-gray-600 text-sm max-w-md mx-auto mb-6">
-                Nossa central de monitoramento recebeu sua solicitação. Se for uma emergência em andamento, priorize o contato via WhatsApp ou telefone 24h.
+                Nada foi enviado à central. Revise e remova informações que não deseja compartilhar, especialmente documentos, senhas ou dados de terceiros. Depois, abra o WhatsApp e confirme o envio por lá.
               </p>
+              <label htmlFor="contact-preview" className="text-sm font-bold text-gray-700 mb-2">Mensagem para revisão</label>
+              <textarea id="contact-preview" rows={9} value={preparedMessage} onChange={e => setPreparedMessage(e.target.value)} className="w-full border border-gray-300 rounded-xl p-4 text-gray-900 text-sm mb-4" />
+              <a href={'https://wa.me/' + (COMPANY.whatsapp?.internacional || '5511965020011') + '?text=' + encodeURIComponent(preparedMessage)} target="_blank" rel="noopener noreferrer" className="bg-[#5a6fa6] text-white rounded-xl px-6 py-3 font-bold mb-4">Abrir WhatsApp para revisar e enviar</a>
+              <p className="text-xs text-gray-600 mb-4">Se o WhatsApp não abrir, copie o texto ou ligue para {COMPANY.telefone.exibicao}. Esta tela não confirma recebimento.</p>
               <button
                 type="button"
                 onClick={() => setSubmitted(false)}
                 className="text-xs font-bold uppercase tracking-wider text-[#5a6fa6] hover:underline"
               >
-                Enviar nova mensagem
+                Voltar e editar os dados
               </button>
             </div>
           ) : (
@@ -195,19 +196,13 @@ export const ContactForm: React.FC = () => {
                 />
               </div>
 
+              <p className="text-xs text-gray-600">O formulário prepara uma mensagem no seu navegador. Você revisa o texto antes de abrir o WhatsApp; o envio só acontece quando você confirma no aplicativo. Não inclua documentos, senhas ou dados sensíveis.</p>
               <button
                 type="submit"
-                disabled={isSubmitting}
                 className="w-full min-h-[52px] py-3.5 px-6 rounded-xl bg-[#5a6fa6] hover:bg-[#4b5d8d] text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg transition-colors disabled:opacity-50"
               >
-                {isSubmitting ? (
-                  <span>Enviando dados...</span>
-                ) : (
-                  <>
-                    <span>Enviar Mensagem para a Central</span>
-                    <Send className="w-4 h-4" />
-                  </>
-                )}
+                <span>Preparar mensagem para WhatsApp</span>
+                <Send className="w-4 h-4" />
               </button>
             </form>
           )}
